@@ -1,0 +1,72 @@
+{
+  "books": [
+    {
+      "title": "Kamisan: Orang Silih Berganti, Aksi Ini Tetap Berdiri",
+      "author": "Ditulis oleh Maria Katarina Sumarsih, Suciwati, Dimas Bagus Arya, dkk.",
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1750471015i/236916057.jpg",
+      "tags": ["Marjin Kiri", "2025", "176 Hal"],
+      "url": "https://www.goodreads.com/id/book/show/236916057-kamisan"
+    },
+    {
+      "title": "Kami Sudah Lelah dengan Kekerasan: Reformasi, Pembunuhan Munir, dan Pencarian Keadilan di Indonesia",
+      "author": "Ditulis oleh Matt Easton (penulis utama). Diterjemahkan oleh Keenan Nasution",
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1725614105i/218546646.jpg",
+      "tags": ["Marjin Kiri", "2024", "457 Hal"],
+      "url": "https://www.goodreads.com/book/show/218546646-kami-sudah-lelah-dengan-kekerasan"
+    },
+    {
+      "title": "Mereka Hilang Tak Kembali: Sejarah Kekerasan Orde Baru 1966–1998",
+      "author": "Ditulis oleh Aristayanu Bagus, AS Rimbawana, Deby Hermawan, Putro Wasista",
+      "cover": "https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1759832250i/242487951.jpg",
+      "tags": ["EA Books (Buku Mojok)", "2025", "211 Hal"],
+      "url": "https://www.goodreads.com/book/show/242487951-mereka-hilang-tak-kembali"
+    }
+  ],
+  "videos": [
+    {
+      "title": "Silent Thursdays | No Marks x KontraS",
+      "publisher": "KontraS",
+      "thumbnail": "https://i3.ytimg.com/vi/HtrS1n3ZKu8/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=HtrS1n3ZKu8",
+      "summary": "Dokumenter pendek dari KontraS ini menyoroti bergabungnya aktivis muda bersama para korban lansia dalam Aksi Kamisan. Video ini menjadi pengingat kuat bahwa meskipun para pejuang keadilan mulai menua, generasi muda kini siap hadir untuk meneruskan perjuangan 18 tahun mereka dalam melawan impunitas dan kekerasan negara."
+    },
+    {
+      "title": "Kenapa Aksi Digelar Tiap Kamis | BBC News Indonesia",
+      "publisher": "BBC NEWS INDONESIA",
+      "thumbnail": "https://i3.ytimg.com/vi/ibCvZnvL7_Y/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=ibCvZnvL7_Y",
+      "summary": "Ulasan BBC News Indonesia mengenai asal-usul Aksi Kamisan sejak 2007. Video ini mengupas bagaimana aksi diam berpakaian hitam, yang banyak dipelopori oleh para ibu korban, menjadi simbol perlawanan abadi untuk menuntut pertanggungjawaban negara atas pelanggaran HAM masa lalu."
+    },
+    {
+      "title": "Sejarah Panjang Aksi Kamisan | Putar Balik",
+      "publisher": "PUTAR BALIK",
+      "thumbnail": "https://i3.ytimg.com/vi/xRFR_MUz7Vw/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=xRFR_MUz7Vw",
+      "summary": "Dokumenter mini tentang 18 tahun perjalanan Aksi Kamisan. Setiap Kamis, para ibu dan keluarga korban pelanggaran HAM berdiri diam berpayung hitam di depan Istana Negara untuk melawan impunitas dan menuntut keadilan."
+    },
+    {
+      "title": "Mencari Kedamaian Dalam Keadilan | Makna Talks",
+      "publisher": "MAKNA TALKS SPECIALS",
+      "thumbnail": "https://i3.ytimg.com/vi/ifLjrP4IZqU/maxresdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=ifLjrP4IZqU",
+      "summary": "Kisah haru Ibu Maria Catarina Sumarsih yang kehilangan putranya dalam Tragedi Semanggi 1998. Episode ini menyoroti transformasinya dari seorang ibu yang berduka menjadi pejuang HAM tangguh yang terus menghidupkan Aksi Kamisan."
+    }
+  ],
+  "articles": [
+    {
+      "source": "TEMPO, 28 JULI 2026",
+      "title": "Perjalanan 19 Tahun Sumarsih dan Aksi Kamisan",
+      "url": "https://www.tempo.co/gaya-hidup/perjalanan-19-tahun-sumarsih-dan-aksi-kamisan-2278832"
+    },
+    {
+      "source": "KOMPAS, 29 MEI 2026",
+      "title": "Hampir Seribu ”Kamisan” Berlalu, Keadilan Tak Kunjung Datang bagi Korban Peristiwa 1998",
+      "url": "https://www.kompas.id/artikel/suara-hati-di-pekan-anti-penghilangan-paksa-sedunia"
+    },
+    {
+      "source": "BBC INDONESIA, 5 MARET 2026",
+      "title": "Aksi Kamisan ke-900: Sumarsih Setia Berdiri di Depan Istana Negara, Mencari Pembunuh Anaknya",
+      "url": "https://www.bbc.com/indonesia/articles/c4g7p5wdl59o"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "startDate": "2007-01-18",
+  "firstActionDescription": "Pelaksanaan aksi hening perdana yang digelar secara damai di depan Istana Negara.",
+  "movementDescription": "Bertahan konsisten lebih dari ratusan pekan berdiri melintasi berbagai era kepemimpinan.",
+  "totalArchives": "7 Naskah",
+  "archiveDescription": "Dokumentasi naskah surat tuntutan, siaran pers solidaritas, dan risalah edukasi HAM.",
+  "stats": [
+    {
+      "label": "AKSI PERTAMA",
+      "value": "18 Jan 2007",
+      "description": "Pelaksanaan aksi hening perdana yang digelar secara damai di depan Istana Negara."
+    },
+    {
+      "label": "PERJALANAN GERAKAN",
+      "dynamicKey": "durationYears",
+      "value": "19+ Tahun",
+      "description": "Bertahan konsisten lebih dari ratusan pekan berdiri melintasi berbagai era kepemimpinan."
+    },
+    {
+      "label": "JUMLAH ARSIP",
+      "value": "7 Naskah",
+      "description": "Dokumentasi naskah surat tuntutan, selebaran aksi, dan risalah edukasi HAM."
+    }
+  ]
+}

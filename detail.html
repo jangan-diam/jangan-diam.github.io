@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rincian Aksi | Jangan Diam</title>
+    <meta name="description" content="Baca dokumen lengkap, transkrip surat terbuka, dan lampiran foto Aksi Kamisan.">
+
+    <!-- Development: Prevent search engine indexing. Remove before public launch. -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pureblack: '#000000',
+                        offblack: '#0A0A0A',
+                        cardbg: '#121212',
+                        darkborder: '#27272A',
+                        lightborder: '#3F3F46',
+                        subtext: '#A1A1AA',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Iconify CDN -->
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+    <!-- AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Site Stylesheet -->
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body data-page="arsip-detail" x-data="detailApp"
+    class="bg-pureblack text-zinc-200 font-sans antialiased selection:bg-zinc-200 selection:text-black flex flex-col min-h-screen">
+
+    <!-- Global Preloader -->
+    <div id="site-preloader"
+        class="fixed inset-0 z-[100] bg-pureblack flex flex-col items-center justify-center pointer-events-auto">
+        <div class="relative flex flex-col items-center gap-6">
+            <div
+                class="w-24 h-24 sm:w-28 sm:h-28 border border-zinc-800 rounded-full flex items-center justify-center bg-offblack preloader-emblem">
+                <iconify-icon icon="lucide:umbrella"
+                    class="text-4xl sm:text-5xl text-white preloader-umbrella"></iconify-icon>
+            </div>
+            <div class="font-mono text-xs tracking-[0.3em] text-zinc-400 uppercase preloader-text">
+                JANGAN DIAM
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-pureblack/90 backdrop-blur-md border-b border-darkborder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Brand SVG -->
+                <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity py-1">
+                    <img src="assets/img/typeword.svg" alt="Jangan Diam" class="h-6 w-auto block">
+                </a>
+
+                <nav class="hidden md:flex items-center gap-1 font-mono text-xs tracking-wider">
+                    <a href="index.html" id="nav-home"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        IKUT BERDIRI
+                    </a>
+                    <a href="archive.html" id="nav-arsip"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        ARSIP AKSI
+                    </a>
+                    <a href="timeline.html" id="nav-linimasa"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        LINIMASA
+                    </a>
+                    <a href="reference.html" id="nav-rujukan"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        RUJUKAN
+                    </a>
+                </nav>
+
+                <!-- Social Media Links -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <a href="https://www.instagram.com/aksikamisan/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="w-9 h-9 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 transition-all flex items-center justify-center rounded-full">
+                        <iconify-icon icon="lucide:instagram" class="text-base"></iconify-icon>
+                    </a>
+                    <a href="https://x.com/sumarsih11" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter / X"
+                        class="w-9 h-9 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 transition-all flex items-center justify-center rounded-full">
+                        <iconify-icon icon="simple-icons:x" class="text-xs"></iconify-icon>
+                    </a>
+                    <a href="https://www.youtube.com/@jakartanicus" target="_blank" rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        class="w-9 h-9 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 transition-all flex items-center justify-center rounded-full">
+                        <iconify-icon icon="simple-icons:youtube" class="text-xs"></iconify-icon>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-zinc-400 hover:text-white">
+                    <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-pureblack border-b border-t border-darkborder px-4 pt-3 pb-6 font-mono text-sm">
+            <div class="flex flex-col gap-3">
+                <a href="index.html" class="text-left py-2 text-subtext pl-3">IKUT BERDIRI</a>
+                <a href="archive.html" class="text-left py-2 text-white border-l-2 border-white pl-3">ARSIP AKSI</a>
+                <a href="timeline.html" class="text-left py-2 text-subtext pl-3">LINIMASA</a>
+                <a href="reference.html" class="text-left py-2 text-subtext pl-3">RUJUKAN</a>
+                <div class="pt-4 border-t border-darkborder flex items-center gap-4 text-zinc-400">
+                    <a href="https://www.instagram.com/aksikamisan/" target="_blank"
+                        class="hover:text-white flex items-center gap-2">
+                        <iconify-icon icon="lucide:instagram"></iconify-icon> Instagram
+                    </a>
+                    <a href="https://x.com/sumarsih11" target="_blank" class="hover:text-white flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:x"></iconify-icon> Twitter
+                    </a>
+                    <a href="https://www.youtube.com/@jakartanicus" target="_blank"
+                        class="hover:text-white flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:youtube"></iconify-icon> YouTube
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow pt-0">
+
+        <!-- Sticky Sub-Header Action Bar -->
+        <div
+            class="sticky top-20 z-30 bg-pureblack/95 backdrop-blur-md border-b border-darkborder py-2.5 sm:py-3.5 px-3 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex items-center justify-between font-mono text-xs gap-2 lg:px-6">
+                <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                    <a href="archive.html"
+                        class="px-2.5 sm:px-3 py-1.5 border border-darkborder text-zinc-300 hover:text-white hover:border-white transition-all flex items-center gap-1.5 text-[11px] sm:text-xs shrink-0">
+                        <iconify-icon icon="lucide:arrow-left" class="text-sm"></iconify-icon>
+                        <span>Kembali<span class="hidden sm:inline"> ke Katalog</span></span>
+                    </a>
+                    <span class="text-zinc-600 hidden md:inline">|</span>
+                    <div class="hidden md:flex items-center gap-2 text-zinc-400">
+                        <a href="archive.html" class="text-zinc-400 hover:text-white transition-colors">Arsip</a>
+                        <span>/</span>
+                        <span id="detail-breadcrumb-act" class="text-white font-bold"
+                            x-text="`Aksi ke-${currentItem ? currentItem.actNum : ''}`">Aksi ke-804</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                    <button @click="copyText()" title="Salin Teks"
+                        class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 border border-darkborder text-zinc-300 hover:text-white hover:border-white transition-all text-[11px] sm:text-xs shrink-0">
+                        <iconify-icon icon="lucide:copy" class="text-sm"></iconify-icon>
+                        <span class="hidden sm:inline">Salin Teks</span>
+                        <span class="sm:hidden">Salin</span>
+                    </button>
+                    <a id="detail-top-source-link"
+                        :href="currentItem ? (currentItem.sourceUrl || 'https://kontras.org') : 'https://kontras.org'"
+                        target="_blank" rel="noopener noreferrer" title="Buka Sumber Asli"
+                        class="px-2 sm:px-3.5 py-1.5 border border-darkborder text-zinc-200 font-medium hover:text-white hover:border-white transition-all flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs shrink-0">
+                        <iconify-icon icon="lucide:external-link" class="text-sm"></iconify-icon>
+                        <span class="hidden sm:inline">Buka Sumber Asli</span>
+                        <span class="sm:hidden">Sumber</span>
+                    </a>
+                    <button @click="downloadAttachments()" title="Unduh Berkas"
+                        class="px-2.5 sm:px-4 py-1.5 bg-white text-black font-bold hover:bg-zinc-200 transition-all flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs shrink-0">
+                        <iconify-icon icon="lucide:download" class="text-sm"></iconify-icon>
+                        <span class="hidden sm:inline">Unduh Berkas</span>
+                        <span class="sm:hidden">Unduh</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12 pt-10">
+
+            <!-- Editorial Headline Block -->
+            <div class="space-y-6 border-b border-darkborder pb-10">
+                <div class="flex flex-wrap items-center gap-2 font-mono text-xs">
+                    <span id="detail-act-badge" class="px-3 py-1 bg-white text-black font-bold"
+                        x-text="`Aksi #${currentItem ? currentItem.actNum : ''}`">Aksi #804</span>
+                    <span id="detail-category-badge" class="px-3 py-1 border border-zinc-700 text-zinc-300"
+                        x-text="currentItem ? (currentItem.tags[2] || currentItem.tags[0] || 'Surat Terbuka') : 'Surat Terbuka'">Surat
+                        Terbuka</span>
+                    <span class="text-zinc-500">·</span>
+                    <span id="detail-date" class="text-zinc-400" x-text="currentItem ? currentItem.date : ''">18 Juli
+                        2024</span>
+                </div>
+
+                <!-- Full-Width Title -->
+                <h1 id="detail-title"
+                    class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12] w-full"
+                    x-text="currentItem ? currentItem.title : ''">
+                    Memuat…
+                </h1>
+
+                <div
+                    class="grid sm:grid-cols-3 gap-6 pt-6 font-mono text-xs border-t border-darkborder/60 text-zinc-400">
+                    <div class="space-y-1.5">
+                        <span class="text-zinc-500 block text-[10px] tracking-wider">Sumber Dokumen</span>
+                        <span id="detail-source" class="text-white font-medium block"
+                            x-text="currentItem ? (currentItem.source || 'Arsip JSKK') : 'Arsip JSKK'">Arsip JSKK</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <span class="text-zinc-500 block text-[10px] tracking-wider">Nomor Dokumen</span>
+                        <span id="detail-doc-num" class="text-white font-medium block"
+                            x-text="currentItem ? (currentItem.docNum || '-') : '-'">-</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        <span class="text-zinc-500 block text-[10px] tracking-wider">Tanggal Publikasi</span>
+                        <span id="detail-pub-date" class="text-white font-medium block"
+                            x-text="currentItem ? currentItem.date : ''">18 Juli 2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Insights / Ringkasan Section -->
+            <template x-if="currentItem && currentItem.insights && currentItem.insights.length">
+                <div class="space-y-4 pt-2 pb-10 border-b border-darkborder">
+                    <span class="font-mono text-xs text-subtext uppercase tracking-widest block font-bold">[ RINGKASAN DOKUMEN ]</span>
+                    <ul class="space-y-4 pt-1">
+                        <template x-for="(point, idx) in currentItem.insights" :key="idx">
+                            <li class="flex items-start gap-3.5 text-zinc-200">
+                                <span class="w-2 h-2 rounded-full bg-white shrink-0 mt-2.5"></span>
+                                <span class="font-serif text-lg sm:text-xl leading-relaxed text-zinc-200" x-text="point"></span>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <!-- Article Text Body (populated by JS) -->
+            <div id="detail-text-body" class="detail-body space-y-0" x-html="currentItem ? currentItem.textBody : ''">
+            </div>
+
+            <!-- Attachments & Document Files -->
+            <div class="pt-12 border-t border-darkborder space-y-8">
+                <div class="flex items-center justify-between">
+                    <span class="font-mono text-xs text-subtext tracking-wider">Lampiran & Berkas Dokumen</span>
+                    <span class="font-mono text-xs text-zinc-500">2 Berkas Tersedia</span>
+                </div>
+
+                <!-- Attachments Grid -->
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <template x-if="currentItem && currentItem.attachments">
+                        <template x-for="att in currentItem.attachments" :key="att.type">
+                            <div @click="openLightbox(att)"
+                                class="border border-darkborder bg-offblack hover:border-zinc-400 transition-all p-6 cursor-pointer group space-y-4">
+                                <div
+                                    class="w-full aspect-video border border-zinc-800 monochrome-frame flex flex-col items-center justify-center p-2 text-center space-y-3 group-hover:border-zinc-400 transition-colors overflow-hidden relative">
+                                    <template x-if="att.imageUrl">
+                                        <img :src="att.imageUrl" :alt="att.title"
+                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                    </template>
+                                    <template x-if="!att.imageUrl">
+                                        <div class="flex flex-col items-center space-y-3">
+                                            <iconify-icon :icon="att.icon || 'lucide:file-search'"
+                                                class="text-5xl text-zinc-300"></iconify-icon>
+                                            <div class="space-y-1.5">
+                                                <span class="font-serif text-xl font-bold text-white block"
+                                                    x-text="att.title"></span>
+                                                <span class="font-mono text-[11px] text-zinc-400 block"
+                                                    x-text="att.subtitle"></span>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div class="font-mono text-[11px] text-zinc-400 flex items-center justify-between pt-1">
+                                    <span x-text="att.footer"></span>
+                                    <iconify-icon icon="lucide:maximize-2" class="text-xs text-zinc-300"></iconify-icon>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                </div>
+
+                <!-- Metadata & References Panel -->
+                <div class="border border-darkborder bg-offblack p-8">
+                    <div class="grid md:grid-cols-2 gap-8 font-mono text-xs text-zinc-400">
+                        <!-- Issues / Referenced Cases -->
+                        <div class="space-y-3">
+                            <span class="text-zinc-500 text-[10px] tracking-wider block">Isu / Kasus Dirujuk</span>
+                            <div id="detail-cases-referred" class="flex flex-wrap gap-2 pt-1">
+                                <template x-if="currentItem">
+                                    <template
+                                        x-for="issue in (Array.isArray(currentItem.casesReferred) ? currentItem.casesReferred : (currentItem.casesReferred ? currentItem.casesReferred.split(',').map(s => s.trim()) : []))"
+                                        :key="issue">
+                                        <span
+                                            class="border border-darkborder px-2.5 py-1 bg-pureblack text-white font-medium"
+                                            x-text="issue"></span>
+                                    </template>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Tags (injected dynamically) -->
+                        <div class="space-y-3">
+                            <span class="text-zinc-500 text-[10px] tracking-wider block">Tag Terkait</span>
+                            <div id="detail-tags-container" class="flex flex-wrap gap-2 pt-1">
+                                <template x-if="currentItem">
+                                    <template x-for="tag in currentItem.tags" :key="tag">
+                                        <span class="border border-darkborder px-3 py-1 bg-offblack text-zinc-300"
+                                            x-text="`#${tag}`"></span>
+                                    </template>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Previous / Next Navigation -->
+    <div class="border-t border-b border-darkborder py-6 bg-pureblack mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between font-mono text-xs">
+            <a id="detail-prev-btn" :href="prevItem ? `detail.html?id=${prevItem.actNum}` : '#'"
+                :style="prevItem ? 'opacity: 1' : 'opacity: 0.4; pointer-events: none'"
+                class="group flex items-center gap-4 text-zinc-400 hover:text-white transition-colors text-left">
+                <div
+                    class="w-10 h-10 border border-darkborder group-hover:border-white rounded-full flex items-center justify-center transition-colors shrink-0">
+                    <iconify-icon icon="lucide:arrow-left" class="text-base"></iconify-icon>
+                </div>
+                <div class="space-y-1.5">
+                    <span class="text-[10px] text-zinc-500 block tracking-wider font-medium">Edisi Sebelumnya</span>
+                    <span id="detail-prev-text" class="font-bold text-white block"
+                        x-text="prevItem ? `Aksi ke-${prevItem.actNum}` : 'Aksi Awal'">Aksi ke-803</span>
+                </div>
+            </a>
+
+            <a id="detail-next-btn" :href="nextItem ? `detail.html?id=${nextItem.actNum}` : '#'"
+                :style="nextItem ? 'opacity: 1' : 'opacity: 0.4; pointer-events: none'"
+                class="group flex items-center gap-4 text-zinc-400 hover:text-white transition-colors text-right">
+                <div class="space-y-1.5">
+                    <span class="text-[10px] text-zinc-500 block tracking-wider font-medium">Edisi Selanjutnya</span>
+                    <span id="detail-next-text" class="font-bold text-white block"
+                        x-text="nextItem ? `Aksi ke-${nextItem.actNum}` : 'Belum Terbit'">Aksi ke-805</span>
+                </div>
+                <div
+                    class="w-10 h-10 border border-darkborder group-hover:border-white rounded-full flex items-center justify-center transition-colors shrink-0">
+                    <iconify-icon icon="lucide:arrow-right" class="text-base"></iconify-icon>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" x-show="lightboxOpen" style="display: none;" @click.self="closeLightbox()"
+        class="fixed inset-0 z-50 bg-pureblack/95 backdrop-blur-md flex items-center justify-center p-4">
+        <div
+            class="relative max-w-4xl w-full border border-darkborder bg-offblack p-6 pt-5 space-y-4 max-h-[90vh] flex flex-col">
+            <div class="flex items-center justify-between pb-1 border-b border-darkborder">
+                <span class="font-mono text-xs text-zinc-300 font-bold"
+                    x-text="activeAttachment ? activeAttachment.title : 'Pratinjau Dokumen'"></span>
+                <button @click="closeLightbox()"
+                    class="text-zinc-400 hover:text-white font-mono text-xs border border-darkborder bg-pureblack px-3.5 py-1.5 hover:border-white transition-all">
+                    [ TUTUP ]
+                </button>
+            </div>
+            <div id="lightbox-content"
+                class="flex-grow border border-zinc-800 monochrome-frame flex items-center justify-center p-4 text-center overflow-auto max-h-[75vh]">
+                <template x-if="activeAttachment && activeAttachment.imageUrl">
+                    <div class="space-y-4 w-full flex flex-col items-center">
+                        <img :src="activeAttachment.imageUrl" :alt="activeAttachment.title"
+                            class="max-h-[65vh] w-auto object-contain border border-zinc-700 shadow-2xl" />
+                        <p class="font-mono text-xs text-zinc-400" x-text="activeAttachment.subtitle"></p>
+                    </div>
+                </template>
+                <template x-if="!activeAttachment || !activeAttachment.imageUrl">
+                    <div>
+                        <template x-if="lightboxType === 'naskah'">
+                            <div class="space-y-4">
+                                <iconify-icon icon="lucide:file-text"
+                                    class="text-6xl text-white mx-auto"></iconify-icon>
+                                <h3 class="font-serif text-2xl font-bold text-white"
+                                    x-text="`Naskah Asli Pindaian Surat Terbuka Aksi #${currentItem ? currentItem.actNum : ''}`">
+                                </h3>
+                                <p class="font-mono text-xs text-zinc-400">Pemindaian Berkas Fisik Berstempel Resmi JSKK
+                                </p>
+                            </div>
+                        </template>
+                        <template x-if="lightboxType === 'foto'">
+                            <div class="space-y-4">
+                                <iconify-icon icon="lucide:camera" class="text-6xl text-white mx-auto"></iconify-icon>
+                                <h3 class="font-serif text-2xl font-bold text-white"
+                                    x-text="`Dokumentasi Foto Aksi Lapangan #${currentItem ? currentItem.actNum : ''}`">
+                                </h3>
+                                <p class="font-mono text-xs text-zinc-400">Foto Suasana Keheningan di Depan Istana
+                                    Merdeka</p>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Footer -->
+    <footer class="border-t border-darkborder bg-pureblack py-16 pb-8">
+        <div class="space-y-12">
+            <div class="max-w-4xl mx-auto px-4 text-center space-y-8">
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight italic">
+                    Hidup Korban! Jangan Diam, Lawan!
+                </h2>
+                <p class="text-xs text-subtext leading-relaxed font-mono max-w-2xl mx-auto">
+                    Catatan: Situs web ini dibuat secara mandiri sebagai inisiatif warganet untuk mengarsipkan
+                    dokumen, mengedukasi publik, dan merawat ingatan atas perjuangan Aksi Kamisan serta penegakan Hak
+                    Asasi Manusia di Indonesia.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="https://www.instagram.com/aksikamisan/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="px-5 py-2.5 border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 transition-all font-mono text-xs flex items-center gap-2">
+                        <iconify-icon icon="lucide:instagram" class="text-sm"></iconify-icon>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://x.com/sumarsih11" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter / X"
+                        class="px-5 py-2.5 border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 transition-all font-mono text-xs flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:x" class="text-xs"></iconify-icon>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="https://www.youtube.com/@jakartanicus" target="_blank" rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        class="px-5 py-2.5 border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 transition-all font-mono text-xs flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:youtube" class="text-xs"></iconify-icon>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-darkborder pt-8">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-zinc-600 font-mono text-xs gap-2">
+                    <span>© 2026 JANGAN DIAM</span>
+                    <span>Inisiatif Akses Terbuka</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Library -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <!-- Main Application Script -->
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

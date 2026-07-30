@@ -125,38 +125,36 @@
     color: #e4e4e7;
     /* zinc-200 */
     line-height: 1.85;
+    font-size: 1.3125rem;
 }
 
-/* Lead paragraph - first paragraph gets prominent styling automatically */
-.detail-body p:first-child {
-    font-size: var(--text-2xl);
-    font-weight: 600;
-    color: #ffffff;
-    line-height: 1.45;
-    margin-bottom: 2rem;
+
+.detail-body p,
+.detail-body blockquote,
+.detail-body ul,
+.detail-body ol {
+    margin-bottom: 1.5em !important;
 }
 
-/* Regular body paragraphs */
-.detail-body p {
-    font-size: var(--text-lg);
-    margin-bottom: 1.5rem;
+.detail-body ul,
+.detail-body ol {
+    display: flex;
+    flex-direction: column;
+    gap: .75em;
+    margin-left: 1rem;
 }
 
-/* Pull-quote / blockquote */
-.detail-body blockquote {
-    border-left: 2px solid #ffffff;
-    padding: 0.5rem 0 0.5rem 1.5rem;
-    margin: 2.5rem 0;
-    font-style: italic;
-    font-size: var(--text-2xl);
-    color: #ffffff;
-    line-height: 1.5;
+.detail-body ol {
+    list-style-type: decimal !important;
 }
 
-/* Strong / bold inside body */
-.detail-body strong {
-    color: #ffffff;
-    font-weight: 600;
+.detail-body ul {
+    list-style-type: circle !important;
+}
+
+.detail-body li {
+    padding-left: 1rem;
+    line-height: 1.85em;
 }
 
 /* ── Monochrome Frame ── */
@@ -591,4 +589,8 @@ body[data-page="rujukan"] #nav-rujukan {
         top: -1.75rem;
         max-width: 15rem;
     }
+}
+
+.text-xs {
+    line-height: 1.25rem;
 }

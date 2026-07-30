@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "date": "9 JANUARI 2007",
+    "title": "Rapat JSKK & Ide Aksi Rutin",
+    "summary": "Rapat JSKK (Jaringan Solidaritas Korban untuk Keadilan) pada hari Selasa mencetuskan gagasan aksi damai mingguan di depan Istana Negara.",
+    "badge": "LANGKAH ADVOKASI NYATA",
+    "detailText": "Setelah bertahun-tahun bersosialisasi tentang HAM, JSKK menyepakati pentingnya advokasi rutin di jalanan untuk menuntut keadilan.",
+    "isQuote": false
+  },
+  {
+    "id": 2,
+    "date": "18 JANUARI 2007",
+    "title": "Aksi Kamisan Perdana & Menyurati Presiden",
+    "summary": "Aksi perdana digelar pukul 16.00-17.00 WIB di depan Istana Negara. Selain berdiri hening dan membagikan selebaran, peserta memulai tradisi rutin mengirimkan surat tuntutan kepada Presiden.",
+    "badge": "KUTIPAN",
+    "detailText": "Duka cita saya ini bertransformasi kepada cinta untuk sesama manusia. Ketika saya mencintai Wawan, Aksi Kamisan ini adalah cara saya untuk merawat reformasi.",
+    "isQuote": true,
+    "quoteAuthor": "Ibu Sumarsih"
+  },
+  {
+    "id": 3,
+    "date": "DINAMIKA TAHUNAN",
+    "title": "Keteguhan Mengirimkan Surat Tuntutan",
+    "summary": "Di era Presiden SBY, pengiriman surat difasilitasi hingga mendapat balasan resmi. Di era Presiden Jokowi, meski pengiriman dipersulit, surat tuntutan tetap dikirimkan dan dilacak secara mandiri setiap minggunya.",
+    "badge": "SIMBOL KETEGUHAN",
+    "detailText": "Penggunaan pakaian dan payung hitam menjadi lambang keteguhan: sebuah transformasi rasa duka cita menjadi cinta kepada sesama untuk merawat ingatan.",
+    "isQuote": false
+  },
+  {
+    "id": 4,
+    "date": "PERINGATAN 17 TAHUN / AKSI KE-800+",
+    "title": "Menembus Pekan Ke-800 & Meluas ke Berbagai Kota",
+    "summary": "Lebih dari ratusan pekan berdiri dan lebih dari 780 pucuk surat telah dikirimkan kepada Presiden. Gerakan ini meluas ke berbagai kota di Indonesia dan menjadi ruang aman untuk menyuarakan ketidakadilan.",
+    "badge": "RUANG AMAN MASYARAKAT",
+    "detailText": "Berkelanjutan di berbagai kota, Aksi Kamisan menjadi wadah solidaritas bersama kelompok masyarakat sipil yang memperjuangkan keadilan dan ruang hidup.",
+    "isQuote": false
+  }
+]

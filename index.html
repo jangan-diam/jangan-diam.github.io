@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Segera Hadir | Jangan Diam - Portal Edukasi & Arsip Digital</title>
+    <title>Jangan Diam | Portal Edukasi & Arsip Digital Aksi Kamisan</title>
     <meta name="description"
-        content="Jangan Diam: Platform edukasi dan arsip digital Aksi Kamisan sedang dalam tahap persiapan. Segera hadir untuk publik.">
+        content="Jangan Diam: Inisiatif independen portal edukasi dan arsip digital Aksi Kamisan, mengumpulkan dokumen, zine, dan lini masa perjuangan HAM di Indonesia.">
 
-    <!-- Prevent search engine indexing during coming soon phase -->
+    <!-- Development: Prevent search engine indexing. Remove before public launch. -->
     <meta name="robots" content="noindex, nofollow">
 
     <!-- Google Fonts -->
@@ -17,6 +17,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
         rel="stylesheet">
+
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -56,8 +59,8 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 
-<body data-page="maintenance"
-    class="bg-pureblack text-zinc-200 font-sans antialiased selection:bg-zinc-200 selection:text-black flex flex-col min-h-screen justify-between">
+<body data-page="home"
+    class="bg-pureblack text-zinc-200 font-sans antialiased selection:bg-zinc-200 selection:text-black flex flex-col min-h-screen">
 
     <!-- Global Preloader -->
     <div id="site-preloader"
@@ -74,77 +77,411 @@
         </div>
     </div>
 
-    <!-- Header / Brand Line -->
-    <header class="w-full border-b border-darkborder bg-pureblack/80 backdrop-blur-md sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity">
-                <img src="assets/img/typeword.svg" alt="Jangan Diam" class="h-6 w-auto block">
-            </a>
+    <!-- Global Header & Navigation -->
+    <header class="sticky top-0 z-40 bg-pureblack/90 backdrop-blur-md border-b border-darkborder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo Brand SVG -->
+                <a href="index.html" class="flex items-center hover:opacity-80 transition-opacity py-1">
+                    <img src="assets/img/typeword.svg" alt="Jangan Diam" class="h-6 w-auto block">
+                </a>
 
-            <!-- Status Indicator -->
-            <div
-                class="inline-flex items-center gap-2 px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-full font-mono text-[11px] text-zinc-400">
-                <span class="relative flex h-2 w-2">
-                    <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                </span>
-                <span class="uppercase tracking-wider">SEGERA HADIR</span>
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1 font-mono text-xs tracking-wider">
+                    <a href="index.html" id="nav-home"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        IKUT BERDIRI
+                    </a>
+                    <a href="archive.html" id="nav-arsip"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        ARSIP AKSI
+                    </a>
+                    <a href="timeline.html" id="nav-linimasa"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        LINIMASA
+                    </a>
+                    <a href="reference.html" id="nav-rujukan"
+                        class="nav-btn px-4 py-2 text-subtext hover:text-white border-b-2 border-transparent transition-all">
+                        RUJUKAN
+                    </a>
+                </nav>
+
+                <!-- Social Media Links -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <a href="https://www.instagram.com/aksikamisan/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="w-9 h-9 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 transition-all flex items-center justify-center rounded-full">
+                        <iconify-icon icon="lucide:instagram" class="text-base"></iconify-icon>
+                    </a>
+                    <a href="https://x.com/sumarsih11" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter / X"
+                        class="w-9 h-9 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 transition-all flex items-center justify-center rounded-full">
+                        <iconify-icon icon="simple-icons:x" class="text-xs"></iconify-icon>
+                    </a>
+                    <a href="https://www.youtube.com/@jakartanicus" target="_blank" rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        class="w-9 h-9 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 transition-all flex items-center justify-center rounded-full">
+                        <iconify-icon icon="simple-icons:youtube" class="text-xs"></iconify-icon>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-zinc-400 hover:text-white">
+                    <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-pureblack border-b border-t border-darkborder px-4 pt-3 pb-6 font-mono text-sm">
+            <div class="flex flex-col gap-3">
+                <a href="index.html" class="text-left py-2 text-white border-l-2 border-white pl-3">IKUT BERDIRI</a>
+                <a href="archive.html" class="text-left py-2 text-subtext pl-3">ARSIP AKSI</a>
+                <a href="timeline.html" class="text-left py-2 text-subtext pl-3">LINIMASA</a>
+                <a href="reference.html" class="text-left py-2 text-subtext pl-3">RUJUKAN</a>
+
+                <div class="pt-4 border-t border-darkborder flex items-center gap-4 text-zinc-400">
+                    <a href="https://www.instagram.com/aksikamisan/" target="_blank"
+                        class="hover:text-white flex items-center gap-2">
+                        <iconify-icon icon="lucide:instagram"></iconify-icon> Instagram
+                    </a>
+                    <a href="https://x.com/sumarsih11" target="_blank" class="hover:text-white flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:x"></iconify-icon> Twitter
+                    </a>
+                    <a href="https://www.youtube.com/@jakartanicus" target="_blank"
+                        class="hover:text-white flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:youtube"></iconify-icon> YouTube
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- Main Content / Hero Coming Soon -->
-    <main class="flex-grow flex items-center justify-center py-16 px-4 sm:px-6 relative overflow-hidden">
-        <!-- Subtle Ambient Radial Blur Background -->
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-zinc-800/15 rounded-full blur-3xl pointer-events-none">
+    <!-- Main Content -->
+    <main class="flex-grow">
+
+        <!-- Hero Jumbotron -->
+        <div id="hero-jumbotron" class="relative border-b border-darkborder overflow-hidden" style="min-height:85vh">
+
+            <!-- Bottom Gradient Fade -->
+            <div class="hero-bottom-fade"></div>
+
+            <!-- Main Content Container -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex items-center"
+                style="min-height:85vh;padding-top:3rem;padding-bottom:5rem">
+                <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
+                    <div class="lg:col-span-7 space-y-7">
+                        <!-- Main Headline -->
+                        <h1 class="font-serif text-5xl sm:text-6xl lg:text-[5.2rem] font-bold text-white tracking-tight leading-[1.08] text-glow"
+                            data-aos="fade-up" data-aos-delay="150">
+                            Menolak Lupa,<br />Merawat Ingatan.
+                        </h1>
+
+                        <!-- Hero Description -->
+                        <p class="text-lg sm:text-xl text-zinc-400 max-w-2xl font-light leading-relaxed"
+                            data-aos="fade-up" data-aos-delay="300">
+                            Portal edukasi dan arsip independen Aksi Kamisan, gerakan berdiri diam memakai pakaian
+                            dan payung hitam setiap sore hari Kamis di depan Istana Negara untuk menuntut penuntasan
+                            kasus pelanggaran HAM berat di Indonesia.
+                        </p>
+
+                        <!-- Call to Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-4 pt-2 font-mono text-xs" data-aos="fade-up"
+                            data-aos-delay="450">
+                            <button onclick="scrollToSection('panduan')"
+                                class="group px-7 py-4 bg-white text-black font-bold tracking-wider hover:bg-zinc-200 transition-all uppercase flex items-center gap-2 relative overflow-hidden">
+                                <span class="relative z-10">Panduan Aksi Lapangan</span>
+                                <iconify-icon icon="lucide:arrow-down"
+                                    class="text-base relative z-10 group-hover:translate-y-0.5 transition-transform"></iconify-icon>
+                            </button>
+                            <a href="archive.html"
+                                class="group px-7 py-4 border border-zinc-600 text-zinc-200 hover:text-white hover:border-white transition-all uppercase flex items-center gap-2 backdrop-blur-sm">
+                                <span>Jelajahi Katalog Arsip</span>
+                                <iconify-icon icon="lucide:arrow-right"
+                                    class="text-base group-hover:translate-x-0.5 transition-transform"></iconify-icon>
+                            </a>
+                        </div>
+
+                        <!-- Event Info Ticker -->
+                        <div class="flex items-center gap-6 pt-4 font-mono text-xs text-zinc-500 border-t border-zinc-800/60"
+                            data-aos="fade-up" data-aos-delay="600">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="lucide:map-pin" class="text-sm"></iconify-icon>
+                                <span>Istana Merdeka, Jakarta</span>
+                            </div>
+                            <div class="hidden sm:flex items-center gap-2">
+                                <iconify-icon icon="lucide:calendar" class="text-sm"></iconify-icon>
+                                <span>Setiap Kamis, 16.00 WIB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Hero Emblem & Lyric Popups -->
+                    <div class="lg:col-span-5 flex justify-center mt-14 sm:mt-16 lg:mt-0" data-aos="fade-left"
+                        data-aos-delay="300">
+                        <div id="hero-umbrella-wrapper" x-data="heroApp" class="relative flex items-center justify-center">
+                            <!-- Radial Halo -->
+                            <div class="hero-halo"></div>
+
+                            <!-- Emblem Circle (Clickable to toggle song lyrics) -->
+                            <div id="hero-umbrella-emblem" @click="toggleSinging()" :class="{ 'singing': isPlaying }" title="Klik payung untuk Putar / Jeda Mars Kamisan"
+                                class="hero-emblem relative w-48 h-48 sm:w-60 sm:h-60 mt-4 sm:mt-5 border border-zinc-700/50 rounded-full flex items-center justify-center p-4 bg-gradient-to-br from-offblack via-offblack to-zinc-900/50 backdrop-blur-sm cursor-pointer select-none group">
+
+                                <!-- Concentric Pulse Rings -->
+                                <div class="hero-ring"></div>
+                                <div class="hero-ring"></div>
+                                <div class="hero-ring"></div>
+
+                                <!-- Umbrella Icon -->
+                                <div class="flex items-center justify-center relative z-10">
+                                    <iconify-icon icon="lucide:umbrella"
+                                        class="hero-umbrella text-8xl sm:text-9xl text-zinc-100 block drop-shadow-[0_0_25px_rgba(255,255,255,0.25)]"></iconify-icon>
+                                </div>
+                            </div>
+
+                            <!-- Lyric Chat Bubbles Container -->
+                            <div id="lyric-chat-container" class="absolute inset-0 pointer-events-none z-30"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="max-w-2xl w-full mx-auto text-center space-y-8 relative z-10" data-aos="fade-up">
-
-            <!-- Emblem / Umbrella Centerpiece -->
-            <div
-                class="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-offblack border border-darkborder rounded-full shadow-2xl relative group">
-                <div class="absolute -inset-1 rounded-full bg-white/5 blur group-hover:bg-white/10 transition-all">
+        <!-- Historical Overview & Key Statistics -->
+        <div class="py-20 border-b border-darkborder bg-offblack">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8 mb-16 border border-darkborder p-8 lg:p-10 bg-pureblack"
+                    data-aos="fade-up" x-data="statsApp">
+                    <template x-for="(stat, index) in stats" :key="stat.label">
+                        <div class="space-y-3.5"
+                            :class="index < stats.length - 1 ? 'border-b md:border-b-0 md:border-r border-darkborder pb-6 md:pb-0 md:pr-8' : ''"
+                            data-aos="fade-up" :data-aos-delay="index * 100">
+                            <span class="font-mono text-xs text-subtext uppercase tracking-wider"
+                                x-text="stat.label"></span>
+                            <div class="font-serif text-4xl font-bold text-white" x-text="stat.value"></div>
+                            <p class="text-xs text-subtext leading-relaxed pt-1" x-text="stat.description"></p>
+                        </div>
+                    </template>
                 </div>
-                <iconify-icon icon="lucide:umbrella" class="text-4xl text-white relative z-10"></iconify-icon>
+
+                <div class="grid lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4" data-aos="fade-right">
+                        <span class="font-mono text-xs text-subtext uppercase tracking-widest">Tentang Aksi
+                            Kamisan</span>
+                        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white leading-tight">
+                            Keheningan yang Berbicara Nyaring Kepada Penguasa.
+                        </h2>
+                        <div class="pt-2">
+                            <a href="timeline.html"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 border border-darkborder bg-pureblack text-zinc-300 hover:text-white hover:border-white transition-all font-mono text-xs">
+                                <span>Lihat Linimasa Aksi</span>
+                                <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 space-y-4 text-zinc-300 font-light leading-relaxed" data-aos="fade-left"
+                        data-aos-delay="100">
+                        <p>
+                            Aksi Kamisan berawal dari panjangnya perjuangan keluarga korban pelanggaran HAM berat
+                            (Tragedi Mei 1998, Semanggi I & II, Trisakti, Pembunuhan Munir) dalam mencari kebenaran dan
+                            keadilan. Pada 1999, paguyuban <strong class="text-white">Jaringan Solidaritas Korban untuk
+                                Keadilan (JSKK)</strong> dibentuk.
+                            Setelah bertahun-tahun bersosialisasi tentang HAM, rapat JSKK pada
+                            <strong class="text-white">Selasa, 9 Januari 2007</strong> menyepakati perlunya <strong
+                                class="text-white">langkah advokasi langsung secara rutin di jalanan</strong>.
+                        </p>
+                        <p>
+                            Hari Kamis disepakati bersama agar seluruh peserta dapat hadir di sela-sela aktivitas
+                            harian, sementara lokasi di depan <strong class="text-white">Istana Negara</strong> dipilih
+                            sebagai simbol pusat kekuasaan
+                            negara yang bertanggung jawab atas penegakan hukum dan HAM. Aksi digelar setiap pukul 16.00
+                            hingga 17.00 WIB. Gerakan ini kini meluas ke
+                            <strong class="text-white">berbagai kota</strong> di Indonesia.
+                        </p>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <!-- Main Headlines -->
-            <div class="space-y-4">
-                <div class="font-mono text-xs text-subtext uppercase tracking-[0.25em]">
-                    [ SEDANG DALAM PENYUSUNAN ]
+        <!-- Participation Guide -->
+        <div id="panduan" class="scroll-mt-24 py-20 border-b border-darkborder">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16 space-y-3" data-aos="fade-up">
+                    <span class="font-mono text-xs text-subtext uppercase tracking-widest">[ PANDUAN PARTISIPASI
+                        ]</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white">Bagaimana Cara Bergabung?
+                    </h2>
+                    <p class="text-subtext text-sm">Aksi ini terbuka untuk siapa pun warga negara yang peduli pada
+                        keadilan dan nilai kemanusiaan.</p>
                 </div>
 
-                <h1
-                    class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight">
-                    Ada Kerja dan Karya<br>yang Sedang Disiapkan.
-                </h1>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Guide Card 1: Time & Location -->
+                    <div class="border border-darkborder p-8 bg-cardbg hover:border-zinc-500 transition-all space-y-4"
+                        data-aos="fade-up" data-aos-delay="0">
+                        <div class="flex items-center justify-between font-mono text-xs text-zinc-500">
+                            <span>01 / WAKTU & LOKASI</span>
+                            <iconify-icon icon="lucide:clock" class="text-lg text-zinc-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white">Setiap Kamis Sore</h3>
+                        <p class="text-sm text-subtext leading-relaxed">
+                            Aksi pusat dilaksanakan di depan <strong class="text-white">Istana Negara,
+                                Jakarta</strong> (Taman Pandang Istana) pada pukul 16.00 - 17.00 WIB. Gerakan ini juga
+                            hadir di <strong class="text-white">berbagai kota</strong>.
+                        </p>
+                    </div>
+                    <!-- Guide Card 2: Attire & Symbols -->
+                    <div class="border border-darkborder p-8 bg-cardbg hover:border-zinc-500 transition-all space-y-4"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div class="flex items-center justify-between font-mono text-xs text-zinc-500">
+                            <span>02 / BUSANA & ATRIBUT</span>
+                            <iconify-icon icon="lucide:shirt" class="text-lg text-zinc-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white">Baju & Payung Hitam</h3>
+                        <p class="text-sm text-subtext leading-relaxed">
+                            Peserta mengenakan pakaian dan membawa payung hitam sebagai simbol keteguhan, transformasi
+                            rasa duka cita menjadi cinta terhadap sesama dan <strong class="text-white">sikap teguh
+                                menuntut penegakan HAM.</strong>
+                        </p>
+                    </div>
+                    <!-- Guide Card 3: Peaceful Conduct -->
+                    <div class="border border-darkborder p-8 bg-cardbg hover:border-zinc-500 transition-all space-y-4"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between font-mono text-xs text-zinc-500">
+                            <span>03 / ETIKA AKSI</span>
+                            <iconify-icon icon="lucide:shield-check" class="text-lg text-zinc-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-white">Damai & Reflektif</h3>
+                        <p class="text-sm text-subtext leading-relaxed">
+                            <strong class="text-white">Aksi berlangsung damai.</strong> Setelah keheningan, peserta
+                            membagikan
+                            selebaran naskah tuntutan, melakukan refleksi, menyimak kuliah umum, dan kegiatan lainnya.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <p class="text-subtext text-base sm:text-lg font-sans leading-relaxed max-w-xl mx-auto pt-2">
-                    Kami sedang menyusun ruang edukasi publik serta pengarsipan digital Aksi Kamisan.
-                    Platform ini akan segera hadir secara penuh.
+        <!-- Latest Documents Section -->
+        <div class="py-20 border-b border-darkborder bg-offblack">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4"
+                    data-aos="fade-up">
+                    <div>
+                        <span class="font-mono text-xs text-subtext uppercase tracking-widest">[ DOKUMEN & TERBITAN
+                            ]</span>
+                        <h2 class="font-serif text-3xl font-bold text-white mt-1">Dokumen Aksi Terbaru</h2>
+                    </div>
+                    <a href="archive.html"
+                        class="font-mono text-xs text-zinc-300 hover:text-white transition-colors flex items-center gap-1">
+                        <span>Jelajahi Seluruh Katalog</span>
+                        <iconify-icon icon="lucide:arrow-right" class="text-sm"></iconify-icon>
+                    </a>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6" x-data="archiveApp">
+                    <template x-for="(item, index) in items.slice(0, 3)" :key="item.id">
+                        <a :href="`detail.html?id=${item.actNum}`"
+                            class="border border-darkborder bg-pureblack p-6 hover:border-zinc-400 transition-all space-y-4 group"
+                            data-aos="fade-up" :data-aos-delay="index * 100">
+                            <div class="flex items-center justify-between font-mono text-xs">
+                                <span class="px-2 py-0.5 bg-white text-black font-bold" x-text="`AKSI #${item.actNum}`"></span>
+                                <span class="text-subtext" x-text="item.date"></span>
+                            </div>
+                            <h3 class="font-serif text-xl font-bold text-white group-hover:text-zinc-300 transition-colors" x-text="item.title">
+                            </h3>
+                            <p class="text-xs text-subtext line-clamp-3 leading-relaxed" x-text="item.summary">
+                            </p>
+                            <div
+                                class="pt-4 border-t border-darkborder flex items-center justify-between font-mono text-[11px] text-zinc-400">
+                                <span>[PDF, FOTO AKSI, NASKAH]</span>
+                                <span
+                                    class="group-hover:translate-x-1 transition-transform flex items-center gap-1 text-white">
+                                    <span>BACA DOKUMEN</span>
+                                    <iconify-icon icon="lucide:arrow-right" class="text-xs"></iconify-icon>
+                                </span>
+                            </div>
+                        </a>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="py-20">
+            <div class="max-w-4xl mx-auto px-4 text-center space-y-6" data-aos="zoom-in">
+                <h2 class="font-serif text-4xl font-bold text-white">Merawat Ingatan Bersama</h2>
+                <p class="text-subtext leading-relaxed">
+                    Platform Jangan Diam dikembangkan secara independen untuk mendukung pengarsipan publik. Anda
+                    dapat memberikan kontribusi berupa kiriman naskah lama, rekaman foto sejarah, atau referensi
+                    studi HAM.
                 </p>
+                <div class="pt-4 flex flex-wrap justify-center gap-4 font-mono text-xs">
+                    <a href="mailto:kontribusi@jangandiam.org"
+                        class="px-6 py-3 bg-white text-black font-bold uppercase hover:bg-zinc-200 transition-all flex items-center gap-2">
+                        <iconify-icon icon="lucide:mail" class="text-base"></iconify-icon>
+                        <span>Kontribusi Berkas Arsip</span>
+                    </a>
+                    <a href="reference.html"
+                        class="px-6 py-3 border border-zinc-700 text-zinc-300 uppercase hover:border-white transition-all flex items-center gap-2">
+                        <iconify-icon icon="lucide:book-open" class="text-base"></iconify-icon>
+                        <span>Pelajari Rujukan Edukasi</span>
+                    </a>
+                </div>
             </div>
-
-
-
         </div>
+
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full border-t border-darkborder bg-pureblack py-6">
-        <div
-            class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-zinc-600 font-mono text-xs gap-3 text-center sm:text-left">
-            <span class="italic font-serif text-sm text-zinc-400">Hidup Korban! Jangan Diam, Lawan!</span>
-            <span>2026 JANGAN DIAM</span>
+    <!-- Global Footer -->
+    <footer class="border-t border-darkborder bg-pureblack py-16 pb-8">
+        <div class="space-y-12">
+            <div class="max-w-4xl mx-auto px-4 text-center space-y-8" data-aos="zoom-in">
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight italic">
+                    Hidup Korban! Jangan Diam, Lawan!
+                </h2>
+
+                <p class="text-xs text-subtext leading-relaxed font-mono max-w-2xl mx-auto">
+                    Catatan: Situs web ini dibuat secara mandiri sebagai inisiatif warganet untuk mengarsipkan
+                    dokumen, mengedukasi publik, dan merawat ingatan atas perjuangan Aksi Kamisan serta penegakan Hak
+                    Asasi Manusia di Indonesia.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
+                    <a href="https://www.instagram.com/aksikamisan/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        class="px-5 py-2.5 border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 transition-all font-mono text-xs flex items-center gap-2">
+                        <iconify-icon icon="lucide:instagram" class="text-sm"></iconify-icon>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://x.com/sumarsih11" target="_blank" rel="noopener noreferrer"
+                        aria-label="Twitter / X"
+                        class="px-5 py-2.5 border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 transition-all font-mono text-xs flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:x" class="text-xs"></iconify-icon>
+                        <span>Twitter</span>
+                    </a>
+                    <a href="https://www.youtube.com/@jakartanicus" target="_blank" rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        class="px-5 py-2.5 border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 transition-all font-mono text-xs flex items-center gap-2">
+                        <iconify-icon icon="simple-icons:youtube" class="text-xs"></iconify-icon>
+                        <span>YouTube</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-darkborder pt-8">
+                <div
+                    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-zinc-600 font-mono text-xs gap-2">
+                    <span>© 2026 JANGAN DIAM</span>
+                    <span>Inisiatif Akses Terbuka</span>
+                </div>
+            </div>
         </div>
     </footer>
 
     <!-- AOS Library -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
     <!-- Main Application Script -->
     <script src="assets/js/main.js"></script>
 

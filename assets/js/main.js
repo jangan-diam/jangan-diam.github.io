@@ -1,333 +1,431 @@
 /**
- * Jangan Diam - Main JavaScript
- * Page-based initialization directed by body[data-page]
+ * Jangan Diam - Main JavaScript with Alpine.js
+ * Data fetched from data/*.json
  */
 
-// Archive Data Store
-const archiveData = [
-    {
-        id: '804',
-        actNum: '804',
-        date: '18 JULI 2024',
-        title: 'Surat Terbuka: Menagih Janji Penyelesaian Yudisial Kasus Semanggi I & II',
-        tags: ['Semanggi', 'JSKK', 'Surat Terbuka'],
-        summary: 'Tuntutan tertulis kepada Presiden mengenai penuntasan yudisial atas pembunuhan mahasiswa dalam Tragedi Semanggi I dan II.',
-        casesReferred: 'Semanggi I, Semanggi II, Trisakti',
-        textBody: `
-            <p>
-                Kepada Yang Terhormat, Presiden Republik Indonesia,
-            </p>
-            <p>
-                Dengan segala hormat, kami, Jaringan Solidaritas Korban untuk Keadilan (JSKK), bersama keluarga korban dan masyarakat sipil yang peduli terhadap penegakan HAM, menyampaikan surat terbuka ini di hadapan Istana Negara pada Kamis, 18 Juli 2024.
-            </p>
-            <p>
-                Hari ini menandai aksi ke-804 dan pengiriman surat tuntutan ke-804 kepada Presiden yang kami laksanakan secara konsisten sejak 18 Januari 2007. Kehadiran kami di depan Istana Negara adalah simbol keteguhan: transformasi rasa duka cita menjadi cinta bagi sesama dan penegakan keadilan hukum.
-            </p>
-            <p>
-                Kami menuntut penyelesaian yudisial yang nyata atas Tragedi Semanggi I (13 November 1998) dan Semanggi II (24 September 1999), di mana mahasiswa ditembak di hadapan publik saat menyuarakan aspirasi reformasi.
-            </p>
-            <p>
-                Surat terbuka ini dibagikan di lokasi aksi kepada seluruh lapisan masyarakat yang melintas. Salinannya diarsipkan secara digital agar sejarah perlawanan ini tidak hilang ditelan zaman.
-            </p>
-            <blockquote>
-                "Berdiri sampai ada keadilan, atau sampai tidak ada lagi yang tersisa untuk berdiri."
-            </blockquote>
-            <p>
-                Dokumen Resmi:<br/>
-                <strong>Jaringan Solidaritas Korban untuk Keadilan (JSKK)</strong>
-            </p>`
-    },
-    {
-        id: '803',
-        actNum: '803',
-        date: '11 JULI 2024',
-        title: 'Zine Kamisan: 20 Tahun Pembunuhan Munir Tanpa Dalang Utama',
-        tags: ['Munir', 'Zine', 'Impunitas'],
-        summary: 'Edisi khusus memperingati dua dekade terbunuhnya pejuang HAM Munir Said Thalib di udara tanpa tersentuhnya aktor intelektual.',
-        casesReferred: 'Pembunuhan Munir Said Thalib',
-        textBody: `
-            <p>
-                Dua puluh tahun yang lalu, racun arsenik menghentikan detak jantung pejuang HAM Munir Said Thalib dalam penerbangan menuju Amsterdam.
-            </p>
-            <p>
-                Hingga dua dekade berlalu, eksekutor lapangan telah selesai menjalani hukuman, namun aktor intelektual yang merancang dan memerintahkan pembunuhan tersebut belum pernah diadili secara transparan.
-            </p>
-            <p>
-                Zine Kamisan edisi #803 ini menggarisbawahi bahwa kejahatan terhadap kemanusiaan dan pembunuhan pembela HAM tidak boleh kedaluwarsa.
-            </p>
-            <blockquote>
-                "Aku harus tenang walaupun takut, karena ketakutan akan menghilangkan pikiran jernih." - Munir
-            </blockquote>
-            `
-    },
-    {
-        id: '802',
-        actNum: '802',
-        date: '04 JULI 2024',
-        title: 'Siaran Pers: Stop Kriminalisasi Pejuang Lingkungan & Hak Adat',
-        tags: ['Wadas', 'Lingkungan', 'Siaran Pers'],
-        summary: 'Pernyataan sikap atas meningkatnya tindakan represif dan kriminalisasi terhadap warga desa yang memperjuangkan tanah ruang hidup.',
-        casesReferred: 'Konflik Wadas, Hak Adat Papua',
-        textBody: `
-            <p>
-                Hak atas lingkungan hidup yang bersih, aman, dan sehat merupakan bagian tak terpisahkan dari Hak Asasi Manusia.
-            </p>
-            <p>
-                Aksi Kamisan menyerukan penghentian segala bentuk intimidasi, penangkapan sewenang-wenang, serta kriminalisasi terhadap warga Wadas, masyarakat adat di Papua, dan seluruh pejuang lingkungan hidup.
-            </p>
-            `
-    },
-    {
-        id: '750',
-        actNum: '750',
-        date: '15 JUNI 2023',
-        title: "Surat Terbuka: Menggugat Kebisuan Penguasa Atas Tragedi 1965-1966",
-        tags: ['Tragedi65', 'Surat Terbuka'],
-        summary: "Peringatan aksi ke-750 menegaskan bahwa pemulihan hak-hak korban '65 harus disertai dengan pengungkapan kebenaran sejarah.",
-        casesReferred: 'Tragedi 1965-1966',
-        textBody: `
-            <p>
-                Aksi Kamisan ke-750 menyoroti masih banyaknya penyintas dan keluarga korban Tragedi '65 yang mengalami stigma serta diskriminasi struktural.
-            </p>
-            <p>
-                Pemulihan hak korban tanpa pengungkapan kebenaran dan permohonan maaf resmi dari negara merupakan bentuk pengabaian sejarah.
-            </p>
-            `
-    },
-    {
-        id: '700',
-        actNum: '700',
-        date: '20 MEI 2022',
-        title: 'Zine Kamisan: Pengusutan Penyerangan Pejuang Anti-Korupsi',
-        tags: ['NovelBaswedan', 'Korupsi', 'Zine'],
-        summary: 'Refleksi atas ancaman nyata terhadap aktivis anti-korupsi dan penegakan hukum yang tebang pilih.',
-        casesReferred: 'Penyerangan Novel Baswedan',
-        textBody: `
-            <p>
-                Korupsi adalah kejahatan luar biasa yang merampas hak-hak ekonomi dan sosial rakyat Indonesia.
-            </p>
-            <p>
-                Perlindungan terhadap pejuang anti-korupsi dan pembela keadilan adalah kewajiban mutlak negara yang tak dapat ditawar.
-            </p>
-            `
-    }
-];
+document.addEventListener('alpine:init', () => {
+    // 1. Archive Component (archive.html)
+    Alpine.data('archiveApp', () => ({
+        items: [],
+        search: '',
+        sort: 'newest',
+        loading: true,
 
-// Toggle mobile menu visibility
+        async init() {
+            try {
+                const res = await fetch('data/archive.json');
+                this.items = await res.json();
+            } catch (err) {
+                console.error('Failed to load archive data:', err);
+            } finally {
+                this.loading = false;
+                hidePreloader();
+            }
+        },
+
+        get filteredItems() {
+            const query = this.search.toLowerCase().trim();
+            let result = this.items.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.summary.toLowerCase().includes(query) ||
+                item.actNum.includes(query) ||
+                item.tags.some(t => t.toLowerCase().includes(query))
+            );
+
+            if (this.sort === 'oldest') {
+                result.sort((a, b) => parseInt(a.actNum) - parseInt(b.actNum));
+            } else {
+                result.sort((a, b) => parseInt(b.actNum) - parseInt(a.actNum));
+            }
+            return result;
+        },
+
+        navigateToDetail(actNum) {
+            window.location.href = `detail.html?id=${actNum}`;
+        }
+    }));
+
+    // 2. Archive Detail Component (detail.html)
+    Alpine.data('detailApp', () => ({
+        items: [],
+        currentItem: null,
+        prevItem: null,
+        nextItem: null,
+        loading: true,
+        lightboxOpen: false,
+        lightboxType: 'naskah',
+        activeAttachment: null,
+
+        async init() {
+            try {
+                const res = await fetch('data/archive.json');
+                this.items = await res.json();
+                
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id') || (this.items[0] ? this.items[0].actNum : '917');
+                const index = this.items.findIndex(i => i.actNum === id);
+                
+                if (index !== -1) {
+                    this.currentItem = this.items[index];
+                    this.prevItem = this.items[index + 1] || null;
+                    this.nextItem = this.items[index - 1] || null;
+                } else {
+                    this.currentItem = this.items[0];
+                    this.prevItem = this.items[1] || null;
+                    this.nextItem = null;
+                }
+
+                if (this.currentItem) {
+                    document.title = `${this.currentItem.title} | Jangan Diam`;
+                }
+            } catch (err) {
+                console.error('Failed to load archive detail:', err);
+            } finally {
+                this.loading = false;
+                hidePreloader();
+            }
+        },
+
+        openLightbox(attOrType) {
+            if (typeof attOrType === 'object' && attOrType !== null) {
+                this.activeAttachment = attOrType;
+                this.lightboxType = attOrType.type;
+            } else {
+                this.lightboxType = attOrType;
+                this.activeAttachment = this.currentItem?.attachments?.find(a => a.type === attOrType) || null;
+            }
+            this.lightboxOpen = true;
+        },
+
+        closeLightbox() {
+            this.lightboxOpen = false;
+            this.activeAttachment = null;
+        },
+
+        copyText() {
+            if (!this.currentItem) return;
+            const titleMd = `# ${this.currentItem.title}\n\n`;
+            const bodyMd = htmlToMarkdown(this.currentItem.textBody || '');
+            const fullMd = titleMd + bodyMd;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullMd).then(() => showCopyToast('Teks MD berhasil disalin!'));
+            } else {
+                legacyCopy(fullMd, 'Teks MD berhasil disalin!');
+            }
+        },
+
+        async downloadAttachments() {
+            if (!this.currentItem) {
+                alert('Tidak ada data arsip.');
+                return;
+            }
+
+            // 1. Copy text as Markdown to clipboard
+            const titleMd = `# ${this.currentItem.title}\n\n`;
+            const bodyMd = htmlToMarkdown(this.currentItem.textBody || '');
+            const fullMd = titleMd + bodyMd;
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(fullMd);
+            } else {
+                legacyCopy(fullMd, '');
+            }
+
+            // 2. Download .md file
+            const sanitizeTitle = (this.currentItem.title || 'selebaran').replace(/[^a-z0-9_-]/gi, '_').substring(0, 30);
+            const mdFilename = `Aksi_${this.currentItem.actNum}_${sanitizeTitle}.md`;
+            const blob = new Blob([fullMd], { type: 'text/markdown;charset=utf-8' });
+            const blobUrl = URL.createObjectURL(blob);
+            const mdLink = document.createElement('a');
+            mdLink.href = blobUrl;
+            mdLink.download = mdFilename;
+            document.body.appendChild(mdLink);
+            mdLink.click();
+            document.body.removeChild(mdLink);
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+
+            // 3. Download image attachments
+            const attachments = this.currentItem.attachments || [];
+            let count = 1; // 1 for .md file
+            for (let i = 0; i < attachments.length; i++) {
+                const att = attachments[i];
+                if (att.imageUrl) {
+                    count++;
+                    await new Promise(r => setTimeout(r, 300));
+                    const ext = att.imageUrl.includes('.png') ? 'png' : 'jpg';
+                    const filename = `Aksi_${this.currentItem.actNum}_${att.type || 'lampiran'}_${i + 1}.${ext}`;
+                    await triggerFileDownload(att.imageUrl, filename);
+                }
+            }
+
+            showCopyToast(`Teks disalin & mengunduh ${count} berkas (.md + lampiran)...`);
+        }
+    }));
+
+    // 3. Timeline Component (timeline.html)
+    Alpine.data('timelineApp', () => ({
+        milestones: [],
+        loading: true,
+
+        async init() {
+            try {
+                const res = await fetch('data/timeline.json');
+                this.milestones = await res.json();
+            } catch (err) {
+                console.error('Failed to load timeline data:', err);
+            } finally {
+                this.loading = false;
+                hidePreloader();
+            }
+        }
+    }));
+
+    // 4. Reference Component (reference.html)
+    Alpine.data('referenceApp', () => ({
+        books: [],
+        videos: [],
+        articles: [],
+        loading: true,
+
+        async init() {
+            try {
+                const res = await fetch('data/reference.json');
+                const data = await res.json();
+                this.books = data.books || [];
+                this.videos = data.videos || [];
+                this.articles = data.articles || [];
+
+                this.$nextTick(() => {
+                    this.initSwiper();
+                    requestAnimationFrame(() => {
+                        setTimeout(() => {
+                            hidePreloader();
+                        }, 100);
+                    });
+                });
+            } catch (err) {
+                console.error('Failed to load reference data:', err);
+                hidePreloader();
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        initSwiper() {
+            if (typeof Swiper === 'undefined') return;
+
+            new Swiper('.books-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.books-next',
+                    prevEl: '.books-prev',
+                },
+                pagination: {
+                    el: '.books-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 3,
+                        spaceBetween: 24,
+                    }
+                }
+            });
+
+            new Swiper('.videos-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 20,
+                navigation: {
+                    nextEl: '.videos-next',
+                    prevEl: '.videos-prev',
+                },
+                pagination: {
+                    el: '.videos-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 2,
+                        spaceBetween: 24,
+                    }
+                }
+            });
+        }
+    }));
+
+    // 5. Hero Component (index.html)
+    Alpine.data('heroApp', () => ({
+        counter: '0+',
+        lyrics: [],
+        currentIndex: 0,
+        isPlaying: false,
+        timer: null,
+
+        async init() {
+            this.initCounter();
+            try {
+                const res = await fetch('data/mars.json');
+                this.lyrics = await res.json();
+                setTimeout(() => {
+                    this.startSinging();
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to load mars lyrics:', err);
+            } finally {
+                hidePreloader();
+            }
+        },
+
+        initCounter() {
+            const start = new Date(2007, 0, 18);
+            const now = new Date();
+            const totalWeeks = Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000));
+            const duration = 2000;
+            const startTime = performance.now();
+
+            const step = (timestamp) => {
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(eased * totalWeeks);
+                this.counter = current.toLocaleString('id-ID') + '+';
+                if (progress < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        },
+
+        toggleSinging() {
+            if (this.isPlaying) {
+                this.stopSinging();
+            } else {
+                this.startSinging();
+            }
+        },
+
+        startSinging() {
+            if (this.isPlaying || !this.lyrics.length) return;
+            this.isPlaying = true;
+            this.showNextLyric();
+        },
+
+        stopSinging() {
+            this.isPlaying = false;
+            if (this.timer) clearTimeout(this.timer);
+            const emblem = document.getElementById('hero-umbrella-emblem');
+            if (emblem) emblem.classList.remove('singing');
+            const chatContainer = document.getElementById('lyric-chat-container');
+            if (chatContainer) {
+                const existing = chatContainer.querySelectorAll('.lyric-bubble');
+                existing.forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.add('exiting');
+                    setTimeout(() => b.remove(), 350);
+                });
+            }
+        },
+
+        showNextLyric() {
+            if (!this.isPlaying || !this.lyrics.length) return;
+
+            const emblem = document.getElementById('hero-umbrella-emblem');
+            if (emblem && !emblem.classList.contains('singing')) {
+                emblem.classList.add('singing');
+            }
+
+            const chatContainer = document.getElementById('lyric-chat-container');
+            if (chatContainer) {
+                const existing = chatContainer.querySelectorAll('.lyric-bubble');
+                existing.forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.add('exiting');
+                    setTimeout(() => b.remove(), 350);
+                });
+
+                const item = this.lyrics[this.currentIndex];
+                const bubble = document.createElement('div');
+                bubble.className = 'lyric-bubble pos-top';
+                bubble.innerHTML = `
+                    <p class="font-serif text-sm sm:text-base font-semibold tracking-wide text-zinc-100 text-center leading-snug">
+                        ${item.lyric}
+                    </p>
+                `;
+                chatContainer.appendChild(bubble);
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        bubble.classList.add('active');
+                    });
+                });
+            }
+
+            const currentItem = this.lyrics[this.currentIndex];
+            const nextItem = this.lyrics[(this.currentIndex + 1) % this.lyrics.length];
+            const diffSec = (this.currentIndex === this.lyrics.length - 1) ? 5 : (nextItem.timeSec - currentItem.timeSec);
+            const duration = Math.max(diffSec * 1000, 1200);
+
+            this.currentIndex = (this.currentIndex + 1) % this.lyrics.length;
+            this.timer = setTimeout(() => this.showNextLyric(), duration);
+        }
+    }));
+
+    // 6. Statistics Component
+    Alpine.data('statsApp', () => ({
+        data: null,
+        stats: [],
+        durationYears: '',
+        loading: true,
+
+        async init() {
+            try {
+                const res = await fetch('data/statistics.json');
+                this.data = await res.json();
+                
+                // Compute dynamic duration from startDate to current year
+                if (this.data && this.data.startDate) {
+                    const startYear = new Date(this.data.startDate).getFullYear();
+                    const currentYear = new Date().getFullYear();
+                    const diff = Math.max(0, currentYear - startYear);
+                    this.durationYears = `${diff}+ Tahun`;
+
+                    if (this.data.stats) {
+                        const movement = this.data.stats.find(s => s.dynamicKey === 'durationYears' || s.label === 'PERJALANAN GERAKAN');
+                        if (movement) movement.value = this.durationYears;
+                    }
+                }
+
+                this.stats = this.data.stats || [];
+            } catch (err) {
+                console.error('Failed to load statistics:', err);
+            } finally {
+                this.loading = false;
+                hidePreloader();
+            }
+        }
+    }));
+});
+
+// Navigation & Helper Functions
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     if (menu) menu.classList.toggle('hidden');
 }
 
-// Scroll smoothly to a specific section (home page)
 function scrollToSection(id) {
     const element = document.getElementById(id);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
 }
 
-// Render archive item grid
-function renderArchiveItems(items) {
-    const grid = document.getElementById('archive-grid');
-    if (!grid) return;
-    grid.innerHTML = '';
-
-    if (items.length === 0) {
-        grid.innerHTML = `
-            <div class="col-span-3 py-20 text-center font-mono text-xs text-zinc-500">
-                <iconify-icon icon="lucide:search-x" class="text-4xl block mx-auto mb-4 text-zinc-700"></iconify-icon>
-                Tidak ada dokumen yang cocok dengan pencarian.
-            </div>`;
-        return;
-    }
-
-    items.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = 'border border-darkborder bg-cardbg p-6 cursor-pointer hover:border-zinc-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-white/5 transition-all duration-300 ease-out space-y-4 group flex flex-col justify-between animate-card-enter';
-        card.style.animationDelay = `${index * 60}ms`;
-        card.onclick = () => navigateToDetail(item.actNum);
-
-        const tagBadges = item.tags.map(t =>
-            `<span class="text-[10px] px-2 py-0.5 border border-zinc-800 text-zinc-400 group-hover:border-zinc-700 transition-colors">#${t}</span>`
-        ).join(' ');
-
-        card.innerHTML = `
-            <div class="space-y-3">
-                <div class="flex items-center justify-between font-mono text-xs">
-                    <span class="px-2 py-0.5 bg-white text-black font-bold">AKSI #${item.actNum}</span>
-                    <span class="text-subtext">${item.date}</span>
-                </div>
-                <h3 class="font-serif text-xl font-bold text-white group-hover:text-zinc-200 transition-colors leading-snug">
-                    ${item.title}
-                </h3>
-                <p class="text-xs text-subtext line-clamp-3 leading-relaxed">
-                    ${item.summary}
-                </p>
-                <div class="flex flex-wrap gap-1.5 pt-1">
-                    ${tagBadges}
-                </div>
-            </div>
-            <div class="pt-4 border-t border-darkborder flex items-center justify-between font-mono text-[11px] text-zinc-400">
-                <span>[PDF, FOTO, NASKAH]</span>
-                <span class="group-hover:translate-x-1.5 transition-transform duration-200 text-white flex items-center gap-1">
-                    <span>BACA DOKUMEN</span>
-                    <iconify-icon icon="lucide:arrow-right" class="text-xs"></iconify-icon>
-                </span>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-}
-
-// Filter and sort archive items
-function filterArchive() {
-    const searchEl = document.getElementById('archive-search');
-    const sortEl = document.getElementById('archive-sort');
-    if (!searchEl || !sortEl) return;
-
-    const query = searchEl.value.toLowerCase();
-    const sortVal = sortEl.value;
-
-    let filtered = archiveData.filter(item =>
-        item.title.toLowerCase().includes(query) ||
-        item.summary.toLowerCase().includes(query) ||
-        item.actNum.includes(query) ||
-        item.tags.some(t => t.toLowerCase().includes(query))
-    );
-
-    if (sortVal === 'oldest') {
-        filtered.sort((a, b) => parseInt(a.actNum) - parseInt(b.actNum));
-    } else {
-        filtered.sort((a, b) => parseInt(b.actNum) - parseInt(a.actNum));
-    }
-
-    renderArchiveItems(filtered);
-}
-
-// Navigate to detail page
-function navigateToDetail(actNum) {
-    window.location.href = `detail.html?id=${actNum}`;
-}
-
-// Detail page initialization & population
-let currentDetailItem = null;
-
-function initDetailPage() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || archiveData[0].actNum;
-    const item = archiveData.find(i => i.actNum === id) || archiveData[0];
-    currentDetailItem = item;
-    populateDetail(item);
-}
-
-function populateDetail(item) {
-    const set = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = val;
-    };
-    const setHTML = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.innerHTML = val;
-    };
-
-    set('detail-breadcrumb-act', `AKSI KE-${item.actNum}`);
-    set('detail-act-badge', `AKSI #${item.actNum}`);
-    set('detail-title', item.title);
-    set('detail-date', item.date);
-    set('detail-source', item.source || 'Arsip JSKK');
-    set('detail-pub-date', item.date);
-    set('detail-proc-date', item.processedDate || item.date);
-    setHTML('detail-text-body', item.textBody);
-    set('detail-photo-caption', `FOTO AKSI KE-${item.actNum}`);
-
-    // Issues (supports array or comma-separated string)
-    const issuesContainer = document.getElementById('detail-cases-referred');
-    if (issuesContainer) {
-        const rawIssues = Array.isArray(item.issues || item.casesReferred)
-            ? (item.issues || item.casesReferred)
-            : (item.casesReferred || 'Semanggi I, Trisakti').split(',').map(s => s.trim());
-
-        issuesContainer.innerHTML = rawIssues
-            .filter(Boolean)
-            .map(issue => `<span class="border border-darkborder px-2.5 py-1 bg-pureblack text-white font-medium">${issue}</span>`)
-            .join(' ');
-    }
-
-    // Tags
-    const tagsContainer = document.getElementById('detail-tags-container');
-    if (tagsContainer) {
-        tagsContainer.innerHTML = item.tags
-            .map(t => `<span class="border border-darkborder px-3 py-1 bg-offblack text-zinc-300">#${t}</span>`)
-            .join(' ');
-    }
-
-    // Source links
-    const sourceUrl = item.sourceUrl || 'https://kontras.org';
-    const srcLink = document.getElementById('detail-source-link');
-    if (srcLink) srcLink.href = sourceUrl;
-    const topSrcLink = document.getElementById('detail-top-source-link');
-    if (topSrcLink) topSrcLink.href = sourceUrl;
-
-    // Previous / Next navigation
-    const currentIndex = archiveData.findIndex(i => i.actNum === item.actNum);
-    const prevItem = archiveData[currentIndex + 1]; // Older item = higher index
-    const nextItem = archiveData[currentIndex - 1]; // Newer item = lower index
-
-    const prevBtn = document.getElementById('detail-prev-btn');
-    const prevText = document.getElementById('detail-prev-text');
-    if (prevBtn && prevText) {
-        if (prevItem) {
-            prevBtn.style.opacity = '1';
-            prevBtn.onclick = () => { window.location.href = `detail.html?id=${prevItem.actNum}`; };
-            prevText.textContent = `AKSI KE-${prevItem.actNum}`;
-        } else {
-            prevBtn.style.opacity = '0.4';
-            prevBtn.onclick = null;
-            prevText.textContent = 'AKSI AWAL';
-        }
-    }
-
-    const nextBtn = document.getElementById('detail-next-btn');
-    const nextText = document.getElementById('detail-next-text');
-    if (nextBtn && nextText) {
-        if (nextItem) {
-            nextBtn.style.opacity = '1';
-            nextBtn.onclick = () => { window.location.href = `detail.html?id=${nextItem.actNum}`; };
-            nextText.textContent = `AKSI KE-${nextItem.actNum}`;
-        } else {
-            nextBtn.style.opacity = '0.4';
-            nextBtn.onclick = null;
-            nextText.textContent = 'BELUM TERBIT';
-        }
-    }
-
-    // Update document title
-    document.title = `${item.title} | Jangan Diam`;
-}
-
-// Copy detail text content
-function copyCurrentText() {
-    if (!currentDetailItem) return;
-    const plainText = currentDetailItem.textBody.replace(/<[^>]*>/g, '');
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(plainText.trim())
-            .then(() => showCopyToast())
-            .catch(() => legacyCopy(plainText));
-    } else {
-        legacyCopy(plainText);
-    }
-}
-
-function legacyCopy(text) {
+function legacyCopy(text, msg) {
     const ta = document.createElement('textarea');
     ta.value = text.trim();
     document.body.appendChild(ta);
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    showCopyToast();
+    showCopyToast(msg);
 }
 
-function showCopyToast() {
+function showCopyToast(msg = 'Teks berhasil disalin!') {
     let toast = document.getElementById('copy-toast');
     if (!toast) {
         toast = document.createElement('div');
@@ -335,56 +433,68 @@ function showCopyToast() {
         toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-white text-black font-mono text-xs px-5 py-3 z-50 transition-opacity duration-300';
         document.body.appendChild(toast);
     }
-    toast.textContent = 'Teks berhasil disalin!';
+    toast.textContent = msg;
     toast.style.opacity = '1';
     setTimeout(() => { toast.style.opacity = '0'; }, 2500);
 }
 
-// Lightbox modal handlers
-function openLightbox(type) {
-    const lightbox = document.getElementById('lightbox-modal');
-    const content = document.getElementById('lightbox-content');
-    if (!lightbox || !content) return;
-
-    const actNum = currentDetailItem ? currentDetailItem.actNum : '-';
-
-    if (type === 'naskah') {
-        content.innerHTML = `
-            <div class="space-y-4">
-                <iconify-icon icon="lucide:file-text" class="text-6xl text-white mx-auto"></iconify-icon>
-                <h3 class="font-serif text-2xl font-bold text-white">Naskah Asli Pindaian Surat Terbuka Aksi #${actNum}</h3>
-                <p class="font-mono text-xs text-zinc-400">Pemindaian Berkas Fisik Berstempel Resmi JSKK</p>
-            </div>
-        `;
-    } else {
-        content.innerHTML = `
-            <div class="space-y-4">
-                <iconify-icon icon="lucide:camera" class="text-6xl text-white mx-auto"></iconify-icon>
-                <h3 class="font-serif text-2xl font-bold text-white">Dokumentasi Foto Aksi Lapangan #${actNum}</h3>
-                <p class="font-mono text-xs text-zinc-400">Foto Suasana Keheningan di Depan Istana Merdeka</p>
-            </div>
-        `;
-    }
-
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('flex');
+function htmlToMarkdown(html) {
+    if (!html) return '';
+    let md = html;
+    md = md.replace(/<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi, (m, p1) => {
+        const clean = p1.replace(/<[^>]*>/g, '').trim();
+        return `\n> ${clean}\n\n`;
+    });
+    md = md.replace(/<h([1-6])[^>]*>([\s\S]*?)<\/h\1>/gi, (m, level, p1) => {
+        const hashes = '#'.repeat(parseInt(level));
+        const clean = p1.replace(/<[^>]*>/g, '').trim();
+        return `\n\n${hashes} ${clean}\n\n`;
+    });
+    md = md.replace(/<ol[^>]*>([\s\S]*?)<\/ol>/gi, (m, p1) => {
+        let index = 1;
+        const lis = p1.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, (lm, lp) => {
+            return `${index++}. ${lp.trim()}\n`;
+        });
+        return `\n${lis}\n`;
+    });
+    md = md.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (m, p1) => {
+        const lis = p1.replace(/<li[^>]*>([\s\S]*?)<\/li>/gi, (lm, lp) => {
+            return `- ${lp.trim()}\n`;
+        });
+        return `\n${lis}\n`;
+    });
+    md = md.replace(/<(strong|b)[^>]*>([\s\S]*?)<\/\1>/gi, '**$2**');
+    md = md.replace(/<(em|i)[^>]*>([\s\S]*?)<\/\1>/gi, '*$2*');
+    md = md.replace(/<p[^>]*>([\s\S]*?)<\/p>/gi, '$1\n\n');
+    md = md.replace(/<[^>]*>/g, '');
+    md = md.replace(/&quot;/g, '"').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ');
+    return md.replace(/\n{3,}/g, '\n\n').trim();
 }
 
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox-modal');
-    if (lightbox) {
-        lightbox.classList.add('hidden');
-        lightbox.classList.remove('flex');
+async function triggerFileDownload(url, filename) {
+    try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error('Fetch failed');
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+    } catch (e) {
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
     }
 }
 
-// Close lightbox on backdrop click
-document.addEventListener('click', (e) => {
-    const lightbox = document.getElementById('lightbox-modal');
-    if (lightbox && e.target === lightbox) closeLightbox();
-});
-
-// Rain canvas animation effect
 function initHeroRain() {
     const canvas = document.getElementById('hero-rain-canvas');
     if (!canvas) return;
@@ -440,196 +550,13 @@ function initHeroRain() {
     window.addEventListener('resize', resize);
 }
 
-// Animated week counter on hero section
-function initHeroCounter() {
-    const el = document.getElementById('hero-week-counter');
-    if (!el) return;
-
-    const start = new Date(2007, 0, 18); // 18 Jan 2007
-    const now = new Date();
-    const totalWeeks = Math.floor((now - start) / (7 * 24 * 60 * 60 * 1000));
-
-    const duration = 2000;
-    const startTime = performance.now();
-
-    function step(timestamp) {
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // Ease-out cubic
-        const current = Math.floor(eased * totalWeeks);
-        el.textContent = current.toLocaleString('id-ID') + '+';
-        if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-}
-
-// Animated lyrics display synchronized with Mars timestamps
-function initSingingUmbrella() {
-    const chatContainer = document.getElementById('lyric-chat-container');
-    if (!chatContainer) return;
-
-    // Lyrics & timestamps matching reference/Mars.md
-    const marsLyricsData = [
-        { timeSec: 0, lyric: "Kau muda bangun dari diam" },
-        { timeSec: 4, lyric: "Siapkan payung-payung hitam" },
-        { timeSec: 9, lyric: "Biar sekali sepekan" },
-        { timeSec: 13, lyric: "Kita jumpa di Kamisan" },
-        { timeSec: 18, lyric: "Bangkit lawan atau s'lamanya" },
-        { timeSec: 23, lyric: "Dibungkam ketakutan" },
-        { timeSec: 27, lyric: "Beri ajar pada penguasa" },
-        { timeSec: 32, lyric: "Kepal tangan serukan" },
-        { timeSec: 35, lyric: "Hey! Hidup korban" },
-        { timeSec: 37, lyric: "Jangan diam" },
-        { timeSec: 39, lyric: "Jangan diam, lawan!" },
-        { timeSec: 43, lyric: "Hidup korban" },
-        { timeSec: 46, lyric: "Jangan diam" },
-        { timeSec: 48, lyric: "Jangan diam, lawan!" },
-        { timeSec: 52, lyric: "Bawa kawan sekalian" },
-        { timeSec: 56, lyric: "Masuk dalam barisan" },
-        { timeSec: 60, lyric: "Undang semua kemarahan" },
-        { timeSec: 64, lyric: "Jangan diam, lawan!" },
-        { timeSec: 68, lyric: "Sebar kabar kebenaran" },
-        { timeSec: 72, lyric: "Jangan diam, lawan!" },
-        { timeSec: 77, lyric: "Sampai tiba keadilan" },
-        { timeSec: 81, lyric: "Jangan diam, lawan!" },
-        { timeSec: 103, lyric: "Kau muda bangun dari diam" },
-        { timeSec: 107, lyric: "Siapkan payung-payung hitam" },
-        { timeSec: 112, lyric: "Biar sekali sepekan" },
-        { timeSec: 116, lyric: "Kita jumpa di Kamisan" },
-        { timeSec: 121, lyric: "Bangkit lawan atau s'lamanya" },
-        { timeSec: 126, lyric: "Dibungkam ketakutan" },
-        { timeSec: 130, lyric: "Beri ajar pada penguasa" },
-        { timeSec: 135, lyric: "Kepal tangan serukan" },
-        { timeSec: 138, lyric: "Hey! Hidup korban" },
-        { timeSec: 140, lyric: "Jangan diam" },
-        { timeSec: 143, lyric: "Jangan diam, lawan!" },
-        { timeSec: 147, lyric: "Hidup korban" },
-        { timeSec: 149, lyric: "Jangan diam" },
-        { timeSec: 151, lyric: "Jangan diam, lawan!" },
-        { timeSec: 155, lyric: "Bawa kawan sekalian" },
-        { timeSec: 160, lyric: "Masuk dalam barisan" },
-        { timeSec: 164, lyric: "Undang semua kemarahan" },
-        { timeSec: 168, lyric: "Jangan diam, lawan!" },
-        { timeSec: 172, lyric: "Sebar kabar kebenaran" },
-        { timeSec: 176, lyric: "Jangan diam, lawan!" },
-        { timeSec: 180, lyric: "Sampai tiba keadilan" },
-        { timeSec: 184, lyric: "Jangan diam, lawan!" }
-    ];
-
-    let currentIndex = 0;
-    let isPlaying = false;
-    let timerTimeout = null;
-
-    const emblemEl = document.getElementById('hero-umbrella-emblem');
-
-    function getStepDuration(index) {
-        const currentItem = marsLyricsData[index];
-        const nextItem = marsLyricsData[(index + 1) % marsLyricsData.length];
-
-        let diffSec;
-        if (index === marsLyricsData.length - 1) {
-            diffSec = 5;
-        } else {
-            diffSec = nextItem.timeSec - currentItem.timeSec;
-        }
-
-        return Math.max(diffSec * 1000, 1200);
-    }
-
-    function clearBubbles() {
-        const existingBubbles = chatContainer.querySelectorAll('.lyric-bubble');
-        existingBubbles.forEach(b => {
-            b.classList.remove('active');
-            b.classList.add('exiting');
-            setTimeout(() => b.remove(), 350);
-        });
-    }
-
-    function showNextLyric() {
-        if (!isPlaying) return;
-
-        const item = marsLyricsData[currentIndex];
-
-        clearBubbles();
-
-        const bubble = document.createElement('div');
-        bubble.className = 'lyric-bubble pos-top';
-        bubble.innerHTML = `
-            <p class="font-serif text-sm sm:text-base font-semibold tracking-wide text-zinc-100 text-center leading-snug">
-                ${item.lyric}
-            </p>
-        `;
-
-        chatContainer.appendChild(bubble);
-
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                bubble.classList.add('active');
-            });
-        });
-
-        const duration = getStepDuration(currentIndex);
-        currentIndex = (currentIndex + 1) % marsLyricsData.length;
-
-        timerTimeout = setTimeout(showNextLyric, duration);
-    }
-
-    function startSinging() {
-        if (isPlaying) return;
-        isPlaying = true;
-        if (emblemEl) emblemEl.classList.add('singing');
-        showNextLyric();
-    }
-
-    function stopSinging() {
-        isPlaying = false;
-        if (timerTimeout) clearTimeout(timerTimeout);
-        if (emblemEl) emblemEl.classList.remove('singing');
-        clearBubbles();
-    }
-
-    if (emblemEl) {
-        emblemEl.addEventListener('click', () => {
-            if (isPlaying) {
-                stopSinging();
-            } else {
-                startSinging();
-            }
-        });
-
-        // Autoplay lyrics 2 seconds after page load
-        setTimeout(() => {
-            if (!isPlaying) {
-                startSinging();
-            }
-        }, 2000);
-    }
-}
-
-// DOM initialization based on data-page attribute
 document.addEventListener('DOMContentLoaded', () => {
-    const page = document.body.dataset.page || 'home';
-
-    // Initialize AOS library if present
     if (typeof AOS !== 'undefined') {
         AOS.init({ once: true, offset: 60, easing: 'ease-out-cubic', duration: 700 });
     }
-
-    // Execute page-specific initialization
-    if (page === 'home') {
-        initHeroCounter();
-        initSingingUmbrella();
-    }
-
-    if (page === 'arsip') {
-        renderArchiveItems(archiveData);
-    }
-
-    if (page === 'arsip-detail') {
-        initDetailPage();
-    }
+    initHeroRain();
 });
 
-// Site preloader handler
 function hidePreloader() {
     const preloader = document.getElementById('site-preloader');
     if (!preloader || preloader.classList.contains('preloader-hidden')) return;
@@ -639,12 +566,7 @@ function hidePreloader() {
     }, 500);
 }
 
-// Dismiss preloader when all assets finish loading
-window.addEventListener('load', hidePreloader);
-
-// Fallback timer in case load event already fired or is delayed
-if (document.readyState === 'complete') {
-    hidePreloader();
-} else {
-    setTimeout(hidePreloader, 1800);
-}
+window.addEventListener('load', () => {
+    // If no dynamic Alpine components active, hide preloader fallback after window load
+    setTimeout(hidePreloader, 300);
+});
