@@ -1,0 +1,594 @@
+/**
+ * Jangan Diam - Main Stylesheet
+ * Primary CSS styles and animation utilities
+ */
+
+/* ── Fluid Typography Scale ──
+ * clamp(min, preferred, max)
+ * preferred = vi units (viewport-interpolated) so font scales linearly
+ * Base scale: 320px → 1280px viewport width
+ * 1vi = 1% of inline-axis viewport width
+ * Formula: min + (max - min) * (100vw - 320px) / (1280px - 320px)
+ *        = min + (max - min) / 9.6 * 1vi
+ */
+:root {
+    --text-2xs: clamp(0.625rem, 0.585rem + 0.2vi, 0.75rem);
+    /* ~10-12px */
+    --text-xs: clamp(0.688rem, 0.636rem + 0.27vi, 0.813rem);
+    /* ~11-13px */
+    --text-sm: clamp(0.813rem, 0.75rem + 0.33vi, 1rem);
+    /* ~13-16px */
+    --text-base: clamp(1rem, 0.938rem + 0.42vi, 1.125rem);
+    /* ~16-18px */
+    --text-lg: clamp(1.063rem, 0.979rem + 0.52vi, 1.25rem);
+    /* ~17-20px */
+    --text-xl: clamp(1.125rem, 1rem + 0.65vi, 1.5rem);
+    /* ~18-24px */
+    --text-2xl: clamp(1.25rem, 1.083rem + 0.87vi, 1.75rem);
+    /* ~20-28px */
+    --text-3xl: clamp(1.5rem, 1.25rem + 1.3vi, 2.25rem);
+    /* ~24-36px */
+    --text-4xl: clamp(1.75rem, 1.417rem + 1.73vi, 2.75rem);
+    /* ~28-44px */
+    --text-5xl: clamp(2rem, 1.5rem + 2.6vi, 3.5rem);
+    /* ~32-56px */
+    --text-6xl: clamp(2.5rem, 1.75rem + 3.9vi, 4.5rem);
+    /* ~40-72px */
+    --text-7xl: clamp(3rem, 2rem + 5.2vi, 5.5rem);
+    /* ~48-88px */
+    --text-hero: clamp(2.75rem, 1.917rem + 4.33vi, 5.25rem);
+    /* ~44-84px - h1 hero */
+}
+
+/* Override Tailwind's static text-* utilities with fluid values */
+.text-\[10px\],
+.text-\[11px\] {
+    font-size: var(--text-2xs) !important;
+}
+
+.text-xs {
+    font-size: var(--text-xs) !important;
+}
+
+.text-sm {
+    font-size: var(--text-sm) !important;
+}
+
+.text-base {
+    font-size: var(--text-base) !important;
+}
+
+.text-lg {
+    font-size: var(--text-lg) !important;
+}
+
+.text-xl {
+    font-size: var(--text-xl) !important;
+}
+
+.text-2xl {
+    font-size: var(--text-2xl) !important;
+}
+
+.text-3xl {
+    font-size: var(--text-3xl) !important;
+}
+
+.text-4xl {
+    font-size: var(--text-4xl) !important;
+}
+
+.text-5xl {
+    font-size: var(--text-5xl) !important;
+}
+
+.text-6xl {
+    font-size: var(--text-6xl) !important;
+}
+
+.text-7xl {
+    font-size: var(--text-7xl) !important;
+}
+
+/* Hero headline override (hardcoded 5.2rem class) */
+.text-\[5\.2rem\] {
+    font-size: var(--text-hero) !important;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #27272A;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #52525B;
+}
+
+/* ── Text Utilities ── */
+.text-glow {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+/* ── Detail Publication Body Typography ── */
+.detail-body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: #e4e4e7;
+    /* zinc-200 */
+    line-height: 1.85;
+}
+
+/* Lead paragraph - first paragraph gets prominent styling automatically */
+.detail-body p:first-child {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.45;
+    margin-bottom: 2rem;
+}
+
+/* Regular body paragraphs */
+.detail-body p {
+    font-size: var(--text-lg);
+    margin-bottom: 1.5rem;
+}
+
+/* Pull-quote / blockquote */
+.detail-body blockquote {
+    border-left: 2px solid #ffffff;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 2.5rem 0;
+    font-style: italic;
+    font-size: var(--text-2xl);
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+/* Strong / bold inside body */
+.detail-body strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* ── Monochrome Frame ── */
+.monochrome-frame {
+    background: repeating-linear-gradient(45deg,
+            #0a0a0a,
+            #0a0a0a 10px,
+            #121212 10px,
+            #121212 20px);
+}
+
+/* ── Section & Background Gradients ── */
+html,
+body {
+    overflow-x: clip;
+    max-width: 100vw;
+}
+
+body {
+    background: radial-gradient(ellipse at 50% 0%, #09090b 0%, #030304 65%, #000000 100%) fixed !important;
+}
+
+header,
+footer,
+#mobile-menu {
+    background-color: #000000 !important;
+    background-image: none !important;
+}
+
+.bg-offblack {
+    background-image: linear-gradient(180deg, #09090b 0%, #040405 100%) !important;
+}
+
+.bg-cardbg {
+    background-image: linear-gradient(145deg, #0e0e11 0%, #080809 100%) !important;
+}
+
+.bg-section-gradient {
+    background-image: linear-gradient(180deg, rgba(12, 12, 14, 0.6) 0%, rgba(4, 4, 5, 0.8) 100%) !important;
+}
+
+html {
+    background: black;
+}
+
+/* ── Hero Jumbotron Effects ── */
+
+/* Rain canvas sits behind content */
+#hero-rain-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.25;
+}
+
+/* Radial halo glow behind circle emblem */
+.hero-halo {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    max-width: 90vw;
+    max-height: 90vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 35%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: halo-breathe 6s ease-in-out infinite;
+}
+
+@keyframes halo-breathe {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+    }
+}
+
+/* Concentric ring pulses */
+.hero-ring {
+    position: absolute;
+    inset: -12px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    animation: ring-expand 4s ease-out infinite;
+    pointer-events: none;
+}
+
+.hero-ring:nth-child(2) {
+    animation-delay: 1.33s;
+}
+
+.hero-ring:nth-child(3) {
+    animation-delay: 2.66s;
+}
+
+@keyframes ring-expand {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Umbrella icon slow sway */
+.hero-umbrella {
+    animation: umbrella-sway 8s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+}
+
+@keyframes umbrella-sway {
+
+    0%,
+    100% {
+        transform: rotate(-3deg);
+    }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+/* Circle emblem border glow */
+.hero-emblem {
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.04), inset 0 0 40px rgba(255, 255, 255, 0.03);
+    transition: box-shadow 0.5s;
+}
+
+.hero-emblem:hover {
+    box-shadow: 0 0 80px rgba(255, 255, 255, 0.08), inset 0 0 50px rgba(255, 255, 255, 0.05);
+}
+
+/* Bottom gradient fade to pure black */
+.hero-bottom-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, #000000);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Subtle vertical line accent */
+.hero-vert-line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            transparent,
+            rgba(255, 255, 255, 0.06) 30%,
+            rgba(255, 255, 255, 0.06) 70%,
+            transparent);
+    top: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Counter number styling */
+.hero-counter-num {
+    font-variant-numeric: tabular-nums;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* ── Active Navigation Link (Page-based) ── */
+
+/* Desktop active state driven by data-page on <body> */
+body[data-page="home"] #nav-home,
+body[data-page="arsip"] #nav-arsip,
+body[data-page="arsip-detail"] #nav-arsip,
+body[data-page="linimasa"] #nav-linimasa,
+body[data-page="rujukan"] #nav-rujukan {
+    color: white !important;
+    border-bottom-color: white !important;
+}
+
+/* ── Custom Select Dropdown (Hides native OS arrow) ── */
+
+.custom-select-wrap {
+    position: relative;
+}
+
+/* Hide the native browser arrow */
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    /* Leave room for custom chevron */
+    padding-right: 2.75rem;
+    cursor: pointer;
+}
+
+/* Custom chevron drawn with a ::after pseudo-element on the wrapper */
+.custom-select-wrap::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 6px;
+    /* Monochrome SVG chevron-down, zinc-400 (#a1a1aa) */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a1a1aa' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: background-image 0.15s;
+}
+
+/* Brighten chevron when select is focused */
+.custom-select:focus+.custom-select-wrap::after,
+.custom-select-wrap:focus-within::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23ffffff' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* ── Card Entrance & Hover Animations ── */
+
+@keyframes cardFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-card-enter {
+    animation: cardFadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Global Preloader Styles ── */
+
+#site-preloader {
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease-out;
+}
+
+#site-preloader.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.preloader-emblem {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.05), inset 0 0 20px rgba(255, 255, 255, 0.03);
+    animation: emblemPulse 2s ease-in-out infinite;
+}
+
+.preloader-umbrella {
+    animation: umbrellaPulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
+
+.preloader-text {
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes emblemPulse {
+
+    0%,
+    100% {
+        transform: scale(0.96);
+        border-color: rgba(63, 63, 70, 0.8);
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.03);
+    }
+
+    50% {
+        transform: scale(1.05);
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 0 0 60px rgba(255, 255, 255, 0.12);
+    }
+}
+
+@keyframes umbrellaPulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+        transform: scale(0.92) rotate(-2deg);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.08) rotate(2deg);
+    }
+}
+
+@keyframes textPulse {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        letter-spacing: 0.25em;
+    }
+
+    50% {
+        opacity: 1;
+        letter-spacing: 0.35em;
+    }
+}
+
+/* ── Singing Umbrella Pulse & Lyric Chat Bubbles ── */
+
+.hero-emblem.singing {
+    box-shadow: 0 0 90px rgba(255, 255, 255, 0.12), inset 0 0 50px rgba(255, 255, 255, 0.08);
+    animation: emblem-singing-pulse 2s infinite ease-in-out;
+}
+
+.hero-emblem.singing .hero-umbrella {
+    animation: umbrella-sing 1.5s infinite alternate ease-in-out;
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25));
+}
+
+@keyframes emblem-singing-pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    50% {
+        transform: scale(1.03);
+        border-color: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 0 110px rgba(255, 255, 255, 0.2), inset 0 0 60px rgba(255, 255, 255, 0.12);
+    }
+}
+
+@keyframes umbrella-sing {
+    0% {
+        transform: scale(1) rotate(-3deg);
+    }
+
+    100% {
+        transform: scale(1.08) rotate(3deg);
+    }
+}
+
+/* Lyric Chat Bubbles - Always Top position */
+.lyric-bubble {
+    position: absolute;
+    z-index: 30;
+    width: max-content;
+    max-width: 18rem;
+    padding: 0.65rem 1.15rem;
+    background: rgba(18, 18, 20, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.85rem;
+    box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.85), 0 0 18px rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(12px) scale(0.92);
+    filter: blur(6px);
+    transition: opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        filter 0.4s ease-out;
+}
+
+.lyric-bubble.active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    filter: blur(0px);
+    animation: chat-bubble-glow 2.4s ease-in-out infinite alternate;
+}
+
+.lyric-bubble.exiting {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-14px) scale(0.95);
+    filter: blur(8px);
+    transition: opacity 0.35s ease-in,
+        transform 0.35s ease-in,
+        filter 0.35s ease-in;
+}
+
+/* Glow breathing pulse */
+@keyframes chat-bubble-glow {
+    0% {
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 0 12px 35px -5px rgba(0, 0, 0, 0.85), 0 0 15px rgba(255, 255, 255, 0.06);
+    }
+
+    100% {
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 0 14px 38px -5px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 255, 255, 0.18);
+    }
+}
+
+/* Always Top position with tight, comfortable gap */
+.lyric-bubble.pos-top {
+    top: -3.5rem;
+    left: 50%;
+}
+
+/* Tail Arrow pointing down */
+.lyric-bubble::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(18, 18, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transform: rotate(45deg);
+    bottom: -6px;
+    left: 50%;
+    margin-left: -5px;
+    border-top: none;
+    border-left: none;
+}
+
+@media (max-width: 640px) {
+    .lyric-bubble.pos-top {
+        top: -1.75rem;
+        max-width: 15rem;
+    }
+}
