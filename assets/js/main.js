@@ -10,6 +10,8 @@ document.addEventListener('alpine:init', () => {
         search: '',
         sort: 'newest',
         loading: true,
+        currentPage: 1,
+        itemsPerPage: 6,
 
         async init() {
             try {
@@ -21,6 +23,13 @@ document.addEventListener('alpine:init', () => {
                 this.loading = false;
                 hidePreloader();
             }
+
+            this.$watch('search', () => {
+                this.currentPage = 1;
+            });
+            this.$watch('sort', () => {
+                this.currentPage = 1;
+            });
         },
 
         get filteredItems() {
@@ -38,6 +47,38 @@ document.addEventListener('alpine:init', () => {
                 result.sort((a, b) => parseInt(b.actNum) - parseInt(a.actNum));
             }
             return result;
+        },
+
+        get paginatedItems() {
+            const start = (this.currentPage - 1) * this.itemsPerPage;
+            return this.filteredItems.slice(start, start + this.itemsPerPage);
+        },
+
+        get totalPages() {
+            return Math.ceil(this.filteredItems.length / this.itemsPerPage);
+        },
+
+        get latestItems() {
+            return [...this.items]
+                .sort((a, b) => parseInt(b.actNum) - parseInt(a.actNum))
+                .slice(0, 3);
+        },
+
+        getVisiblePages() {
+            const total = this.totalPages;
+            if (total <= 5) {
+                return Array.from({ length: total }, (_, i) => i + 1);
+            }
+            const current = this.currentPage;
+            const pages = [];
+            if (current <= 3) {
+                pages.push(1, 2, 3, 4, '...', total);
+            } else if (current >= total - 2) {
+                pages.push(1, '...', total - 3, total - 2, total - 1, total);
+            } else {
+                pages.push(1, '...', current - 1, current, current + 1, '...', total);
+            }
+            return pages;
         },
 
         navigateToDetail(actNum) {

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arsip Aksi | Jangan Diam</title>
     <meta name="description"
-        content="Katalog dokumen dan publikasi lengkap Aksi Kamisan: Surat Terbuka, Zine Kamisan, dan Siaran Pers sejak 2007.">
+        content="Katalog dokumen dan publikasi lengkap Aksi Kamisan: Surat Terbuka dan Selebaran Aksi.">
 
     <!-- Development: Prevent search engine indexing. Remove before public launch. -->
     <meta name="robots" content="noindex, nofollow">
@@ -166,8 +166,8 @@
                     <span class="font-mono text-xs text-subtext uppercase tracking-widest">[ KATALOG ARSIP
                         INDEPENDEN ]</span>
                     <h1 class="font-serif text-4xl font-bold text-white mt-2">Katalog Dokumen & Publikasi Aksi</h1>
-                    <p class="text-subtext text-sm mt-4">Pencarian terstruktur untuk Surat Terbuka, Zine Kamisan,
-                        dan Siaran Pers sejak 2007.</p>
+                    <p class="text-subtext text-sm mt-4">Pencarian terstruktur untuk Surat Terbuka dan Selebaran Aksi.
+                    </p>
                 </div>
 
                 <!-- Search & Filter Toolbar -->
@@ -209,7 +209,7 @@
                             <span>Tidak ada dokumen yang cocok dengan pencarian.</span>
                         </div>
                     </template>
-                    <template x-for="(item, index) in filteredItems" :key="item.id">
+                    <template x-for="(item, index) in paginatedItems" :key="item.id">
                         <div @click="navigateToDetail(item.actNum)"
                             class="border border-darkborder bg-cardbg p-6 cursor-pointer hover:border-zinc-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-white/5 transition-all duration-300 ease-out space-y-4 group flex flex-col justify-between animate-card-enter"
                             :style="`animation-delay: ${index * 60}ms`">
@@ -243,6 +243,57 @@
                             </div>
                         </div>
                     </template>
+                </div>
+
+                <!-- Pagination Controls -->
+                <div x-show="totalPages > 1"
+                    class="mt-16 pt-8 border-t border-darkborder flex flex-col sm:flex-row items-center justify-between gap-6"
+                    data-aos="fade-up">
+                    <!-- Page Status Info -->
+                    <div class="font-mono text-xs text-zinc-500">
+                        Menampilkan <span class="text-zinc-300 font-semibold"
+                            x-text="((currentPage - 1) * itemsPerPage) + 1"></span>
+                        sampai <span class="text-zinc-300 font-semibold"
+                            x-text="Math.min(currentPage * itemsPerPage, filteredItems.length)"></span>
+                        dari <span class="text-zinc-300 font-semibold" x-text="filteredItems.length"></span> dokumen
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="flex items-center gap-1.5 font-mono text-xs select-none">
+                        <!-- Previous Page Button -->
+                        <button @click="currentPage > 1 ? (currentPage--, scrollToSection('archive-search')) : null"
+                            :disabled="currentPage === 1"
+                            class="w-10 h-10 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all duration-200"
+                            aria-label="Halaman Sebelumnya">
+                            <iconify-icon icon="lucide:chevron-left" class="text-base"></iconify-icon>
+                        </button>
+
+                        <!-- Page Numbers -->
+                        <template x-for="page in getVisiblePages()"
+                            :key="page === '...' ? 'ellipsis-' + Math.random() : page">
+                            <div class="flex">
+                                <template x-if="page === '...'">
+                                    <span class="w-10 h-10 flex items-center justify-center text-zinc-600">...</span>
+                                </template>
+                                <template x-if="page !== '...'">
+                                    <button @click="currentPage = page; scrollToSection('archive-search')"
+                                        :class="currentPage === page ? 'bg-white text-black font-bold border-white' : 'border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400'"
+                                        class="w-10 h-10 border active:scale-95 flex items-center justify-center transition-all duration-200"
+                                        x-text="page">
+                                    </button>
+                                </template>
+                            </div>
+                        </template>
+
+                        <!-- Next Page Button -->
+                        <button
+                            @click="currentPage < totalPages ? (currentPage++, scrollToSection('archive-search')) : null"
+                            :disabled="currentPage === totalPages"
+                            class="w-10 h-10 border border-darkborder bg-offblack text-zinc-400 hover:text-white hover:border-zinc-400 active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all duration-200"
+                            aria-label="Halaman Selanjutnya">
+                            <iconify-icon icon="lucide:chevron-right" class="text-base"></iconify-icon>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

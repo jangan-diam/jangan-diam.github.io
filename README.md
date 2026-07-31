@@ -34,9 +34,9 @@ Kami menyambut kontribusi dari siapa pun untuk menjaga arsip ini tetap mutakhir,
 
 ### 1. Menambahkan Data Arsip Aksi Kamisan
 Untuk menambahkan data edisi Aksi Kamisan baru:
-1. Pelajari alur kerja dan templat ekstraksi data pada [`process/PROMPT.md`](process/PROMPT.md).
+1. Pelajari alur kerja dan templat ekstraksi data pada [process/PROMPT.md](file:///d:/Repository/personal-jangan-diam/process/PROMPT.md).
 2. Simpan media bukti dan berkas hasil ekstraksi (`result.json`) di direktori `process/[Nomor Aksi]/`.
-3. Sisipkan objek data baru ke `data/archive.json`, serta harmonisasikan `data/tags.json`, `data/cases.json`, dan `data/statistics.json`.
+3. Sisipkan objek data baru ke [data/archive.json](file:///d:/Repository/personal-jangan-diam/data/archive.json), serta harmonisasikan [data/tags.json](file:///d:/Repository/personal-jangan-diam/data/tags.json), [data/cases.json](file:///d:/Repository/personal-jangan-diam/data/cases.json), dan [data/statistics.json](file:///d:/Repository/personal-jangan-diam/data/statistics.json).
 4. Kirimkan *Pull Request* (PR) berisi penambahan data arsip dan berkas proses terkait.
 
 ### 2. Kontribusi Pengembangan Kode & Tampilan

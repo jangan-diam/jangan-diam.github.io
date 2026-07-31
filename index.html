@@ -383,7 +383,7 @@
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-6" x-data="archiveApp">
-                    <template x-for="(item, index) in items.slice(0, 3)" :key="item.id">
+                    <template x-for="(item, index) in latestItems" :key="item.id">
                         <a :href="`detail.html?id=${item.actNum}`"
                             class="border border-darkborder bg-pureblack p-6 hover:border-zinc-400 transition-all space-y-4 group"
                             data-aos="fade-up" :data-aos-delay="index * 100">
