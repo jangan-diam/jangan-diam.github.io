@@ -11,6 +11,10 @@
  * Formula: min + (max - min) * (100vw - 320px) / (1280px - 320px)
  *        = min + (max - min) / 9.6 * 1vi
  */
+html {
+    transition: font-size 0.15s ease-in-out;
+}
+
 :root {
     --text-2xs: clamp(0.625rem, 0.585rem + 0.2vi, 0.75rem);
     /* ~10-12px */
@@ -121,13 +125,12 @@
 
 /* ── Detail Publication Body Typography ── */
 .detail-body {
-    font-family: 'Cormorant Garamond', Georgia, serif;
+    /* font-family: 'Cormorant Garamond', Georgia, serif; */
     color: #e4e4e7;
     /* zinc-200 */
-    line-height: 1.85;
-    font-size: 1.3125rem;
+    line-height: 1.85 !important;
+    font-size: 1rem;
 }
-
 
 .detail-body p,
 .detail-body blockquote,
@@ -593,4 +596,13 @@ body[data-page="rujukan"] #nav-rujukan {
 
 .text-xs {
     line-height: 1.25rem;
+}
+
+[x-text="m.summary"],
+[x-text="m.detailText"] {
+    line-height: 1.5em !important;
+}
+
+#detail-title {
+    line-height: 1.25em;
 }

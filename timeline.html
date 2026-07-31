@@ -133,7 +133,7 @@
 
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu"
-            class="hidden md:hidden bg-pureblack border-b border-t border-darkborder px-4 pt-3 pb-6 font-mono text-sm">
+            class="hidden md:hidden bg-pureblack border-b border-t border-darkborder px-4 pt-3 pb-6 font-mono md:text-sm text-[.75em]">
             <div class="flex flex-col gap-3">
                 <a href="index.html" class="text-left py-2 text-subtext pl-3">IKUT BERDIRI</a>
                 <a href="archive.html" class="text-left py-2 text-subtext pl-3">ARSIP AKSI</a>
@@ -198,9 +198,9 @@
                                 </template>
                                 <template x-if="m.isQuote">
                                     <div>
-                                        <p class="font-serif italic text-sm text-zinc-300" x-text="`“${m.detailText}”`">
+                                        <p class="font-serif italic text-lg text-zinc-300" x-text="`“${m.detailText}”`">
                                         </p>
-                                        <div class="text-xs text-subtext font-mono mt-1" x-text="`- ${m.quoteAuthor}`">
+                                        <div class="text-xs text-subtext font-mono mt-2" x-text="`- ${m.quoteAuthor}`">
                                         </div>
                                     </div>
                                 </template>
@@ -223,13 +223,13 @@
     </main>
 
     <!-- Global Footer -->
-    <footer class="border-t border-darkborder bg-pureblack py-16 pb-8">
+    <footer class="border-t border-darkborder bg-pureblack py-16 pb-8 mb-16 md:mb-0">
         <div class="space-y-12">
             <div class="max-w-4xl mx-auto px-4 text-center space-y-8" data-aos="zoom-in">
                 <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight italic">
                     Hidup Korban! Jangan Diam, Lawan!
                 </h2>
-                <p class="text-xs text-subtext leading-relaxed font-mono max-w-2xl mx-auto">
+                <p class="text-[.8em] sm:text-[.875em] text-subtext leading-relaxed font-mono max-w-2xl mx-auto">
                     Catatan: Situs web ini dibuat secara mandiri sebagai inisiatif warganet untuk mengarsipkan
                     dokumen, mengedukasi publik, dan merawat ingatan atas perjuangan Aksi Kamisan serta penegakan Hak
                     Asasi Manusia di Indonesia.
@@ -264,6 +264,29 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Bottom Action Bar (Font Size Controls) -->
+    <div id="mobile-bottom-bar"
+        class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-pureblack/95 backdrop-blur-md border-t border-darkborder px-4 py-2.5 flex items-center justify-between shadow-2xl">
+        <div class="flex items-center gap-2">
+            <iconify-icon icon="lucide:type" class="text-base text-zinc-400"></iconify-icon>
+            <span class="font-mono text-[11px] text-zinc-400 uppercase tracking-wider">Ukuran Teks</span>
+        </div>
+        <div class="flex items-center gap-1.5 font-mono text-xs">
+            <button id="font-scale-dec" onclick="changeFontScale(-1)" aria-label="Kecilkan Teks" title="Kecilkan Teks"
+                class="w-8 h-8 rounded border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all">
+                <span class="font-bold text-xs">A-</span>
+            </button>
+            <button onclick="resetFontScale()" aria-label="Reset Ukuran Teks" title="Reset (100%)"
+                class="px-2.5 h-8 rounded border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 active:scale-95 flex items-center justify-center transition-all">
+                <span id="font-scale-display" class="font-mono text-xs font-semibold text-white">100%</span>
+            </button>
+            <button id="font-scale-inc" onclick="changeFontScale(1)" aria-label="Besarkan Teks" title="Besarkan Teks"
+                class="w-8 h-8 rounded border border-darkborder bg-offblack text-zinc-300 hover:text-white hover:border-zinc-400 active:scale-95 disabled:opacity-30 disabled:pointer-events-none flex items-center justify-center transition-all">
+                <span class="font-bold text-sm">A+</span>
+            </button>
+        </div>
+    </div>
 
     <!-- AOS Library -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>

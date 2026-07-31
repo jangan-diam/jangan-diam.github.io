@@ -430,7 +430,7 @@ function showCopyToast(msg = 'Teks berhasil disalin!') {
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'copy-toast';
-        toast.className = 'fixed bottom-6 left-1/2 -translate-x-1/2 bg-white text-black font-mono text-xs px-5 py-3 z-50 transition-opacity duration-300';
+        toast.className = 'fixed bottom-16 sm:bottom-6 left-1/2 -translate-x-1/2 bg-white text-black font-mono text-xs px-5 py-3 z-50 transition-opacity duration-300';
         document.body.appendChild(toast);
     }
     toast.textContent = msg;
@@ -569,4 +569,43 @@ function hidePreloader() {
 window.addEventListener('load', () => {
     // If no dynamic Alpine components active, hide preloader fallback after window load
     setTimeout(hidePreloader, 300);
+});
+
+// ── Font Size Scaling Controls ──
+const FONT_SCALES = [100, 110, 120, 130, 140];
+let currentFontScaleIndex = parseInt(localStorage.getItem('fontScaleIndex') || '0', 10);
+if (isNaN(currentFontScaleIndex) || currentFontScaleIndex < 0 || currentFontScaleIndex >= FONT_SCALES.length) {
+    currentFontScaleIndex = 0;
+}
+
+function applyFontScale(index) {
+    currentFontScaleIndex = index;
+    localStorage.setItem('fontScaleIndex', currentFontScaleIndex.toString());
+    const scale = FONT_SCALES[currentFontScaleIndex];
+    document.documentElement.style.fontSize = scale === 100 ? '' : `${scale}%`;
+
+    const fontDisplay = document.getElementById('font-scale-display');
+    if (fontDisplay) {
+        fontDisplay.textContent = `${scale}%`;
+    }
+    const decBtn = document.getElementById('font-scale-dec');
+    const incBtn = document.getElementById('font-scale-inc');
+    if (decBtn) decBtn.disabled = currentFontScaleIndex === 0;
+    if (incBtn) incBtn.disabled = currentFontScaleIndex === FONT_SCALES.length - 1;
+}
+
+function changeFontScale(delta) {
+    const newIndex = Math.max(0, Math.min(FONT_SCALES.length - 1, currentFontScaleIndex + delta));
+    applyFontScale(newIndex);
+}
+
+function resetFontScale() {
+    applyFontScale(0);
+}
+
+// Immediate initial application
+applyFontScale(currentFontScaleIndex);
+
+document.addEventListener('DOMContentLoaded', () => {
+    applyFontScale(currentFontScaleIndex);
 });
