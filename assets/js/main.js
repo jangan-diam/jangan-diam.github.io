@@ -118,6 +118,35 @@ document.addEventListener('alpine:init', () => {
 
                 if (this.currentItem) {
                     document.title = `${this.currentItem.title} | Jangan Diam`;
+
+                    // Dynamically update SEO metadata for Javascript-capable crawlers & social share parsers
+                    const descText = this.currentItem.summary || 'Baca dokumen lengkap, transkrip surat terbuka, dan lampiran foto Aksi Kamisan.';
+                    const pageUrl = `${window.location.origin}${window.location.pathname}?id=${this.currentItem.actNum}`;
+                    
+                    const updateMeta = (selector, content) => {
+                        const el = document.querySelector(selector);
+                        if (el) el.setAttribute('content', content);
+                    };
+
+                    updateMeta('meta[name="description"]', descText);
+                    updateMeta('meta[property="og:title"]', `${this.currentItem.title} | Jangan Diam`);
+                    updateMeta('meta[property="og:description"]', descText);
+                    updateMeta('meta[property="og:url"]', pageUrl);
+                    
+                    updateMeta('meta[name="twitter:title"]', `${this.currentItem.title} | Jangan Diam`);
+                    updateMeta('meta[name="twitter:description"]', descText);
+                    updateMeta('meta[name="twitter:url"]', pageUrl);
+
+                    const canonical = document.querySelector('link[rel="canonical"]');
+                    if (canonical) canonical.setAttribute('href', pageUrl);
+
+                    // Update sharing image if attachment exists
+                    const imgAttachment = this.currentItem.attachments?.find(a => a.imageUrl);
+                    if (imgAttachment && imgAttachment.imageUrl) {
+                        const fullImgUrl = `${window.location.origin}/${imgAttachment.imageUrl.replace(/^\//, '')}`;
+                        updateMeta('meta[property="og:image"]', fullImgUrl);
+                        updateMeta('meta[name="twitter:image"]', fullImgUrl);
+                    }
                 }
             } catch (err) {
                 console.error('Failed to load archive detail:', err);
@@ -152,6 +181,33 @@ document.addEventListener('alpine:init', () => {
                 navigator.clipboard.writeText(fullMd).then(() => showCopyToast('Teks MD berhasil disalin!'));
             } else {
                 legacyCopy(fullMd, 'Teks MD berhasil disalin!');
+            }
+        },
+
+        getShareUrl() {
+            if (!this.currentItem) return '';
+            return `${window.location.origin}${window.location.pathname}?id=${this.currentItem.actNum}`;
+        },
+
+        copyLink() {
+            if (!this.currentItem) return;
+            const pageUrl = this.getShareUrl();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(pageUrl).then(() => showCopyToast('Tautan berhasil disalin!'));
+            } else {
+                legacyCopy(pageUrl, 'Tautan berhasil disalin!');
+            }
+        },
+
+        shareSystem() {
+            if (!this.currentItem) return;
+            const pageUrl = this.getShareUrl();
+            if (navigator.share) {
+                navigator.share({
+                    title: `${this.currentItem.title} | Jangan Diam`,
+                    text: this.currentItem.summary || 'Baca dokumen lengkap Aksi Kamisan.',
+                    url: pageUrl
+                }).catch(err => console.log('System share cancelled or failed', err));
             }
         },
 
@@ -440,6 +496,36 @@ document.addEventListener('alpine:init', () => {
             } finally {
                 this.loading = false;
                 hidePreloader();
+            }
+        }
+    }));
+
+    // 7. FAQ Component
+    Alpine.data('faqApp', () => ({
+        faqs: [],
+        activeFaqs: [],
+        loading: true,
+
+        async init() {
+            try {
+                const res = await fetch('data/faq.json');
+                this.faqs = await res.json();
+            } catch (err) {
+                console.error('Failed to load FAQ data:', err);
+            } finally {
+                this.loading = false;
+            }
+        },
+
+        isOpen(index) {
+            return this.activeFaqs.includes(index);
+        },
+
+        toggle(index) {
+            if (this.isOpen(index)) {
+                this.activeFaqs = this.activeFaqs.filter(i => i !== index);
+            } else {
+                this.activeFaqs.push(index);
             }
         }
     }));

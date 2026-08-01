@@ -44,3 +44,10 @@ Untuk menambahkan data edisi Aksi Kamisan baru:
 2. Jalankan server lokal untuk menguji perubahan (contoh: `python -m http.server 8000`).
 3. Pastikan struktur berkas JSON tetap valid dan tidak ada kendala pada komponen Alpine.js/Tailwind CSS.
 4. Kirimkan *Pull Request* (PR) beserta penjelasan mengenai perubahan yang dilakukan.
+
+---
+
+## Pertanyaan & Masukan
+
+Jika Anda memiliki pertanyaan, ingin memberikan masukan, atau ingin berkontribusi, Anda dapat membuka **Issue** di halaman GitHub repositori ini.
+

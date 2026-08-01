@@ -606,3 +606,8 @@ body[data-page="rujukan"] #nav-rujukan {
 #detail-title {
     line-height: 1.25em;
 }
+
+#faq strong {
+    font-weight: bolder !important;
+    color: white;
+}

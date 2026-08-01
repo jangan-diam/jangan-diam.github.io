@@ -1,0 +1,22 @@
+[
+  {
+    "question": "Apa itu \"Jangan Diam\" dan apa hubungannya dengan gerakan Aksi Kamisan?",
+    "answer": "<strong>Jangan Diam</strong> adalah inisiatif independen yang berfungsi sebagai portal edukasi dan arsip digital Aksi Kamisan. Kami mengumpulkan dokumen, selebaran (naskah tuntutan), surat terbuka, dan beberapa rujukan pembelajaran terkait HAM secara terbuka. Situs ini dikelola secara sukarela oleh warganet dan bukan merupakan representasi resmi dari Jaringan Solidaritas Korban untuk Keadilan (JSKK), melainkan sebuah bentuk dukungan solidaritas digital."
+  },
+  {
+    "question": "Mengapa arsip yang tersedia dari keseluruhan aksi belum lengkap?",
+    "answer": "Aksi Kamisan adalah perjuangan panjang yang telah berjalan hampir dua dekade, dan dokumen-dokumen fisik bersejarah tersebut dirawat dengan penuh dedikasi oleh para keluarga korban serta pendamping aksi di lapangan. Sebagai warganet biasa yang ingin ikut bersolidaritas, saat ini kami baru mampu mengumpulkan dan menyalin dokumen-dokumen yang sudah terpublikasi secara terbuka di internet. Harapan kami adalah inisiatif kecil ini bisa membantu mempermudah akses publik serta mendukung perluasan kesadaran isu HAM ini di ruang digital. Kami selalu terbuka dan siap membantu jika kelak ada kesempatan untuk mendigitalisasi dokumen pendukung lainnya secara bertahap."
+  },
+  {
+    "question": "Bagaimana cara saya berkontribusi dalam pengarsipan digital ini?",
+    "answer": "Kami sangat menyambut kontribusi Anda. Jika Anda memiliki dokumen fisik/digital seperti selebaran Aksi Kamisan lama, naskah tuntutan, dokumentasi foto/video sejarah, atau referensi studi HAM, Anda dapat berkontribusi melalui repositori GitHub kami di <a href=\"https://github.com/jangan-diam/jangan-diam.github.io\" target=\"_blank\" class=\"underline text-white hover:text-zinc-300\">github.com/jangan-diam/jangan-diam.github.io</a> atau berkolaborasi langsung di platform ini."
+  },
+  {
+    "question": "Apakah seluruh arsip di situs ini bebas diakses dan disebarluaskan?",
+    "answer": "Ya, seluruh arsip di portal \"Jangan Diam\" adalah inisiatif akses terbuka (<em>Open Access</em>). Anda bebas membaca, mengunduh, menyalin, dan menyebarluaskan dokumen-dokumen yang ada untuk kepentingan edukasi, penelitian, kajian akademik, maupun kampanye kesadaran HAM, dengan tetap menghormati sumber aslinya."
+  },
+  {
+    "question": "Bagaimana cara memastikan keaslian dan akurasi dokumen yang diarsipkan di situs ini?",
+    "answer": "Seluruh naskah tuntutan, selebaran, dan pernyataan sikap yang diunggah di situs ini disalin langsung dari dokumen fisik asli yang dibagikan saat pelaksanaan Aksi Kamisan oleh JSKK. Kami juga berupaya menyertakan foto atau hasil pindai (<em>scan</em>) dokumen asli di halaman detail arsip sebagai pembanding untuk menjamin validitas dan keotentikan data sejarah tersebut."
+  }
+]

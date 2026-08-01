@@ -1,6 +1,7 @@
-# robots.txt — Site Under Development
-# Disallow all crawlers from indexing this site.
-# Remove this file and the noindex meta tags before launching publicly.
+# robots.txt — Jangan Diam Portal
+# Allow all crawlers to index this site.
 
 User-agent: *
-Disallow: /
+Allow: /
+
+Sitemap: https://jangan-diam.github.io/sitemap.xml

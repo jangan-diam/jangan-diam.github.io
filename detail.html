@@ -7,8 +7,24 @@
     <title>Rincian Aksi | Jangan Diam</title>
     <meta name="description" content="Baca dokumen lengkap, transkrip surat terbuka, dan lampiran foto Aksi Kamisan.">
 
-    <!-- Development: Prevent search engine indexing. Remove before public launch. -->
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jangan-diam.github.io/detail.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jangan-diam.github.io/detail.html">
+    <meta property="og:title" content="Rincian Aksi Kamisan | Jangan Diam">
+    <meta property="og:description" content="Baca dokumen lengkap, transkrip surat terbuka, dan lampiran foto Aksi Kamisan.">
+    <meta property="og:image" content="https://jangan-diam.github.io/assets/img/typeword.svg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://jangan-diam.github.io/detail.html">
+    <meta name="twitter:title" content="Rincian Aksi Kamisan | Jangan Diam">
+    <meta name="twitter:description" content="Baca dokumen lengkap, transkrip surat terbuka, dan lampiran foto Aksi Kamisan.">
+    <meta name="twitter:image" content="https://jangan-diam.github.io/assets/img/typeword.svg">
+
+    <!-- Signature: g87SdvSNlDgM1IjLIU4fsnRR5bEk9++IA4TyowMCqtr2uQJ0xmRKVBGTxAAD6vltB16G1kO8V6IQuTED8/HdmVo= -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -184,6 +200,71 @@
                         <span class="hidden sm:inline">Salin Teks</span>
                         <span class="sm:hidden">Salin</span>
                     </button>
+                    <!-- Share Button & Dropdown -->
+                    <div class="relative hidden md:block" x-data="{ shareOpen: false }" @click.outside="shareOpen = false">
+                        <button @click="shareOpen = !shareOpen" title="Bagikan Halaman"
+                            class="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 border border-darkborder text-zinc-300 hover:text-white hover:border-white transition-all text-xs sm:text-xs shrink-0">
+                            <iconify-icon icon="lucide:share-2" class="text-sm"></iconify-icon>
+                            <span class="hidden sm:inline">Bagikan</span>
+                            <span class="sm:hidden">Bagikan</span>
+                        </button>
+                        <div x-show="shareOpen" 
+                            x-transition:enter="transition ease-out duration-100"
+                            x-transition:enter-start="transform opacity-0 scale-95"
+                            x-transition:enter-end="transform opacity-100 scale-100"
+                            x-transition:leave="transition ease-in duration-75"
+                            x-transition:leave-start="transform opacity-100 scale-100"
+                            x-transition:leave-end="transform opacity-0 scale-95"
+                            style="display: none;"
+                            class="absolute right-0 mt-2 w-48 border border-darkborder bg-offblack shadow-2xl z-50 py-1 font-mono text-[13px] text-zinc-300">
+                            
+                            <!-- Copy Link -->
+                            <button @click="copyLink(); shareOpen = false" 
+                                class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors border-b border-darkborder/40">
+                                <iconify-icon icon="lucide:link" class="text-sm text-zinc-400"></iconify-icon>
+                                <span>Salin Tautan</span>
+                            </button>
+                            
+                            <!-- Twitter / X -->
+                            <a :href="currentItem ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(currentItem.title)}&url=${encodeURIComponent(getShareUrl())}` : '#'"
+                               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+                               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                                <iconify-icon icon="simple-icons:x" class="text-xs text-zinc-400"></iconify-icon>
+                                <span>Twitter / X</span>
+                            </a>
+                            
+                            <!-- WhatsApp -->
+                            <a :href="currentItem ? `https://api.whatsapp.com/send?text=${encodeURIComponent(currentItem.title + ' ' + getShareUrl())}` : '#'"
+                               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+                               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                                <iconify-icon icon="simple-icons:whatsapp" class="text-sm text-zinc-400"></iconify-icon>
+                                <span>WhatsApp</span>
+                            </a>
+                            
+                            <!-- Facebook -->
+                            <a :href="currentItem ? `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}` : '#'"
+                               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+                               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                                <iconify-icon icon="simple-icons:facebook" class="text-sm text-zinc-400"></iconify-icon>
+                                <span>Facebook</span>
+                            </a>
+
+                            <!-- Telegram -->
+                            <a :href="currentItem ? `https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent(currentItem.title)}` : '#'"
+                               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+                               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                                <iconify-icon icon="simple-icons:telegram" class="text-sm text-zinc-400"></iconify-icon>
+                                <span>Telegram</span>
+                            </a>
+
+                            <!-- System Share (if navigator.share is supported) -->
+                            <button x-show="typeof navigator !== 'undefined' && !!navigator.share" @click="shareSystem(); shareOpen = false" 
+                                class="w-full border-t border-darkborder text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                                <iconify-icon icon="lucide:share-2" class="text-sm text-zinc-400"></iconify-icon>
+                                <span>Bagikan Sistem</span>
+                            </button>
+                        </div>
+                    </div>
                     <a id="detail-top-source-link"
                         :href="currentItem ? (currentItem.sourceUrl || 'https://kontras.org') : 'https://kontras.org'"
                         target="_blank" rel="noopener noreferrer" title="Buka Sumber Asli"
@@ -274,13 +355,15 @@
                 <div class="flex items-center justify-between">
                     <span class="font-mono text-[.875em] md:text-xs text-subtext tracking-wider">Lampiran & Berkas
                         Dokumen</span>
-                    <span class="font-mono text-[.875em] md:text-xs text-zinc-500">2 Berkas Tersedia</span>
+                    <span class="font-mono text-[.875em] md:text-xs text-zinc-500"
+                        x-text="currentItem && currentItem.attachments ? `${currentItem.attachments.length} Berkas Tersedia` : ''">2
+                        Berkas Tersedia</span>
                 </div>
 
                 <!-- Attachments Grid -->
                 <div class="grid sm:grid-cols-2 gap-6">
                     <template x-if="currentItem && currentItem.attachments">
-                        <template x-for="att in currentItem.attachments" :key="att.type">
+                        <template x-for="(att, index) in currentItem.attachments" :key="index">
                             <div @click="openLightbox(att)"
                                 class="border border-darkborder bg-offblack hover:border-zinc-400 transition-all p-6 cursor-pointer group space-y-4">
                                 <div
@@ -480,6 +563,73 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Floating Share Button & Dropdown -->
+    <div class="md:hidden fixed bottom-16 right-4 z-40" x-data="{ shareOpen: false }" @click.outside="shareOpen = false">
+        <!-- Upward Dropdown Menu -->
+        <div x-show="shareOpen" 
+            x-transition:enter="transition ease-out duration-100"
+            x-transition:enter-start="transform opacity-0 scale-95 translate-y-2"
+            x-transition:enter-end="transform opacity-100 scale-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-75"
+            x-transition:leave-start="transform opacity-100 scale-100 translate-y-0"
+            x-transition:leave-end="transform opacity-0 scale-95 translate-y-2"
+            style="display: none;"
+            class="absolute right-0 bottom-14 w-48 border border-darkborder bg-offblack shadow-2xl py-1 font-mono text-[13px] text-zinc-300">
+            
+            <!-- Copy Link -->
+            <button @click="copyLink(); shareOpen = false" 
+                class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors border-b border-darkborder/40">
+                <iconify-icon icon="lucide:link" class="text-sm text-zinc-400"></iconify-icon>
+                <span>Salin Tautan</span>
+            </button>
+            
+            <!-- Twitter / X -->
+            <a :href="currentItem ? `https://twitter.com/intent/tweet?text=${encodeURIComponent(currentItem.title)}&url=${encodeURIComponent(getShareUrl())}` : '#'"
+               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                <iconify-icon icon="simple-icons:x" class="text-xs text-zinc-400"></iconify-icon>
+                <span>Twitter / X</span>
+            </a>
+            
+            <!-- WhatsApp -->
+            <a :href="currentItem ? `https://api.whatsapp.com/send?text=${encodeURIComponent(currentItem.title + ' ' + getShareUrl())}` : '#'"
+               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                <iconify-icon icon="simple-icons:whatsapp" class="text-sm text-zinc-400"></iconify-icon>
+                <span>WhatsApp</span>
+            </a>
+            
+            <!-- Facebook -->
+            <a :href="currentItem ? `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}` : '#'"
+               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                <iconify-icon icon="simple-icons:facebook" class="text-sm text-zinc-400"></iconify-icon>
+                <span>Facebook</span>
+            </a>
+
+            <!-- Telegram -->
+            <a :href="currentItem ? `https://t.me/share/url?url=${encodeURIComponent(getShareUrl())}&text=${encodeURIComponent(currentItem.title)}` : '#'"
+               target="_blank" rel="noopener noreferrer" @click="shareOpen = false"
+               class="w-full text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                <iconify-icon icon="simple-icons:telegram" class="text-sm text-zinc-400"></iconify-icon>
+                <span>Telegram</span>
+            </a>
+
+            <!-- System Share (if navigator.share is supported) -->
+            <button x-show="typeof navigator !== 'undefined' && !!navigator.share" @click="shareSystem(); shareOpen = false" 
+                class="w-full border-t border-darkborder text-left px-4 py-2.5 hover:bg-zinc-900 hover:text-white flex items-center gap-2.5 transition-colors">
+                <iconify-icon icon="lucide:share-2" class="text-sm text-zinc-400"></iconify-icon>
+                <span>Bagikan Sistem</span>
+            </button>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button @click="shareOpen = !shareOpen" title="Bagikan Halaman"
+            class="w-12 h-12 bg-white text-black hover:bg-zinc-200 active:scale-95 shadow-2xl flex items-center justify-center rounded-full transition-all duration-200 border border-zinc-800">
+            <iconify-icon icon="lucide:share-2" class="text-xl"></iconify-icon>
+        </button>
+    </div>
 
     <!-- Mobile Bottom Action Bar (Font Size Controls) -->
     <div id="mobile-bottom-bar"
