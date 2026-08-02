@@ -34,9 +34,9 @@ Kami menyambut kontribusi dari siapa pun untuk menjaga arsip ini tetap mutakhir,
 
 ### 1. Menambahkan Data Arsip Aksi Kamisan
 Untuk menambahkan data edisi Aksi Kamisan baru:
-1. Pelajari alur kerja dan templat ekstraksi data pada [process/PROMPT.md](file:///d:/Repository/personal-jangan-diam/process/PROMPT.md).
+1. Pelajari alur kerja dan templat ekstraksi data pada [process/PROMPT.md](process/PROMPT.md).
 2. Simpan media bukti dan berkas hasil ekstraksi (`result.json`) di direktori `process/[Nomor Aksi]/`.
-3. Sisipkan objek data baru ke [data/archive.json](file:///d:/Repository/personal-jangan-diam/data/archive.json), serta harmonisasikan [data/tags.json](file:///d:/Repository/personal-jangan-diam/data/tags.json), [data/cases.json](file:///d:/Repository/personal-jangan-diam/data/cases.json), dan [data/statistics.json](file:///d:/Repository/personal-jangan-diam/data/statistics.json).
+3. Sisipkan objek data baru ke [data/archive.json](data/archive.json), serta harmonisasikan [data/tags.json](data/tags.json), [data/cases.json](data/cases.json), dan [data/statistics.json](data/statistics.json).
 4. Kirimkan *Pull Request* (PR) berisi penambahan data arsip dan berkas proses terkait.
 
 ### 2. Kontribusi Pengembangan Kode & Tampilan
@@ -44,6 +44,31 @@ Untuk menambahkan data edisi Aksi Kamisan baru:
 2. Jalankan server lokal untuk menguji perubahan (contoh: `python -m http.server 8000`).
 3. Pastikan struktur berkas JSON tetap valid dan tidak ada kendala pada komponen Alpine.js/Tailwind CSS.
 4. Kirimkan *Pull Request* (PR) beserta penjelasan mengenai perubahan yang dilakukan.
+
+---
+
+## Utilitas Pengolahan Data
+
+### Pembuatan Visualisasi Kata (Word Cloud)
+Repositori ini menyediakan skrip pembantu untuk menghasilkan visualisasi awan kata (word cloud) dari seluruh naskah edisi Aksi Kamisan.
+
+- **Lokasi Skrip**: [process/cloud.py](process/cloud.py)
+- **Dependencies**: [process/requirements.txt](process/requirements.txt)
+- **Cara Kerja**:
+  1. Membaca data naskah edisi Aksi Kamisan (`textBody`) dari [data/archive.json](data/archive.json).
+  2. Menyaring tag-tag HTML dan membersihkan teks dari stopword bahasa Indonesia (menggunakan Sastrawi serta daftar stopword kustom).
+  3. Mengubah kata-kata menjadi kata dasar (stemming) menggunakan stemmer Sastrawi agar penghitungan frekuensi lebih akurat.
+  4. Menghasilkan visualisasi vektor (**SVG**) yang transparan berisi 100 kata terpopuler, dengan top 10 kata paling sering muncul diwarnai putih (`#ffffff`) dan sisanya berwarna abu-abu (`#A1A1AA`).
+  5. Menyimpan berkas hasil visualisasi ke [process/wordcloud.svg](process/wordcloud.svg).
+
+**Cara Menjalankan:**
+```bash
+# 1. Pasang dependensi yang diperlukan
+pip install -r process/requirements.txt
+
+# 2. Jalankan skrip pembantu
+python process/cloud.py
+```
 
 ---
 

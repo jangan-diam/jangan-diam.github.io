@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900">
+<style>@font-face{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;src:url("data:application/font-woff;charset=utf-8;base64,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")format("woff");}</style>
+<style>text{font-family:'Droid Sans Mono';font-weight:normal;font-style:normal;}</style>
+<text transform="translate(116,146)" font-size="150" style="fill:#ffffff">ham</text>
+<text transform="translate(376,700) rotate(-90)" font-size="113" style="fill:#ffffff">langgar</text>
+<text transform="translate(921,874)" font-size="109" style="fill:#ffffff">adil</text>
+<text transform="translate(1101,740)" font-size="104" style="fill:#ffffff">kasus</text>
+<text transform="translate(1148,587)" font-size="101" style="fill:#ffffff">berat</text>
+<text transform="translate(735,124)" font-size="99" style="fill:#ffffff">negara</text>
+<text transform="translate(629,520)" font-size="95" style="fill:#ffffff">korban</text>
+<text transform="translate(543,621)" font-size="88" style="fill:#ffffff">hukum</text>
+<text transform="translate(351,778)" font-size="83" style="fill:#ffffff">perintah</text>
+<text transform="translate(109,392)" font-size="82" style="fill:#ffffff">hak</text>
+<text transform="translate(1267,384) rotate(-90)" font-size="77" style="fill:#A1A1AA">presiden</text>
+<text transform="translate(85,373) rotate(-90)" font-size="76" style="fill:#A1A1AA">keras</text>
+<text transform="translate(510,412)" font-size="73" style="fill:#A1A1AA">indonesia</text>
+<text transform="translate(541,242)" font-size="70" style="fill:#A1A1AA">masyarakat</text>
+<text transform="translate(1539,479) rotate(-90)" font-size="70" style="fill:#A1A1AA">komnas</text>
+<text transform="translate(1211,811)" font-size="68" style="fill:#A1A1AA">impunitas</text>
+<text transform="translate(766,683)" font-size="65" style="fill:#A1A1AA">jakarta</text>
+<text transform="translate(563,869)" font-size="64" style="fill:#A1A1AA">peristiwa</text>
+<text transform="translate(1176,464)" font-size="64" style="fill:#A1A1AA">aparat</text>
+<text transform="translate(869,340)" font-size="64" style="fill:#A1A1AA">sejarah</text>
+<text transform="translate(101,233)" font-size="63" style="fill:#A1A1AA">sipil</text>
+<text transform="translate(159,717) rotate(-90)" font-size="63" style="fill:#A1A1AA">laku</text>
+<text transform="translate(1144,490) rotate(-90)" font-size="62" style="fill:#A1A1AA">uu</text>
+<text transform="translate(1305,101)" font-size="61" style="fill:#A1A1AA">bentuk</text>
+<text transform="translate(1128,646)" font-size="61" style="fill:#A1A1AA">nasional</text>
+<text transform="translate(505,291) rotate(-90)" font-size="59" style="fill:#A1A1AA">tuntas</text>
+<text transform="translate(1463,284) rotate(-90)" font-size="59" style="fill:#A1A1AA">masa</text>
+<text transform="translate(91,774)" font-size="58" style="fill:#A1A1AA">upaya</text>
+<text transform="translate(103,511)" font-size="58" style="fill:#A1A1AA">ingat</text>
+<text transform="translate(1002,405)" font-size="58" style="fill:#A1A1AA">bunuh</text>
+<text transform="translate(640,319)" font-size="58" style="fill:#A1A1AA">warga</text>
+<text transform="translate(66,705) rotate(-90)" font-size="57" style="fill:#A1A1AA">manusia</text>
+<text transform="translate(1370,868)" font-size="56" style="fill:#A1A1AA">jaksa</text>
+<text transform="translate(584,679)" font-size="56" style="fill:#A1A1AA">agung</text>
+<text transform="translate(1374,286) rotate(-90)" font-size="56" style="fill:#A1A1AA">kuasa</text>
+<text transform="translate(852,751)" font-size="56" style="fill:#A1A1AA">tragedi</text>
+<text transform="translate(503,673) rotate(-90)" font-size="56" style="fill:#A1A1AA">duga</text>
+<text transform="translate(1298,375)" font-size="55" style="fill:#A1A1AA">ulang</text>
+<text transform="translate(232,861)" font-size="55" style="fill:#A1A1AA">penuh</text>
+<text transform="translate(438,278) rotate(-90)" font-size="55" style="fill:#A1A1AA">keluarga</text>
+<text transform="translate(532,176)" font-size="54" style="fill:#A1A1AA">lindung</text>
+<text transform="translate(446,583) rotate(-90)" font-size="54" style="fill:#A1A1AA">perempuan</text>
+<text transform="translate(531,115)" font-size="53" style="fill:#A1A1AA">henti</text>
+<text transform="translate(1563,711) rotate(-90)" font-size="53" style="fill:#A1A1AA">nyata</text>
+<text transform="translate(1182,287) rotate(-90)" font-size="53" style="fill:#A1A1AA">proses</text>
+<text transform="translate(881,615)" font-size="52" style="fill:#A1A1AA">selesai</text>
+<text transform="translate(962,56)" font-size="52" style="fill:#A1A1AA">militer</text>
+<text transform="translate(965,267)" font-size="52" style="fill:#A1A1AA">benar</text>
+<text transform="translate(60,873)" font-size="52" style="fill:#A1A1AA">papua</text>
+<text transform="translate(107,302)" font-size="52" style="fill:#A1A1AA">hilang</text>
+<text transform="translate(984,539)" font-size="52" style="fill:#A1A1AA">pasal</text>
+<text transform="translate(987,191)" font-size="51" style="fill:#A1A1AA">jahat</text>
+<text transform="translate(1505,650) rotate(-90)" font-size="51" style="fill:#A1A1AA">bebas</text>
+<text transform="translate(679,51)" font-size="50" style="fill:#A1A1AA">siksa</text>
+<text transform="translate(1578,171) rotate(-90)" font-size="50" style="fill:#A1A1AA">tni</text>
+<text transform="translate(13,432)" font-size="32" style="fill:#A1A1AA">menindaklanjuti</text>
+<text transform="translate(197,673) rotate(-90)" font-size="32" style="fill:#A1A1AA">publik</text>
+<text transform="translate(502,473)" font-size="32" style="fill:#A1A1AA">rakyat</text>
+<text transform="translate(1264,867)" font-size="32" style="fill:#A1A1AA">jskk</text>
+<text transform="translate(460,518)" font-size="31" style="fill:#A1A1AA">politik</text>
+<text transform="translate(1415,264) rotate(-90)" font-size="31" style="fill:#A1A1AA">soeharto</text>
+<text transform="translate(518,50)" font-size="31" style="fill:#A1A1AA">paksa</text>
+<text transform="translate(760,795)" font-size="31" style="fill:#A1A1AA">langgeng</text>
+<text transform="translate(36,876) rotate(-90)" font-size="31" style="fill:#A1A1AA">praktik</text>
+<text transform="translate(167,41)" font-size="31" style="fill:#A1A1AA">independen</text>
+<text transform="translate(173,721)" font-size="31" style="fill:#A1A1AA">penting</text>
+<text transform="translate(1188,880)" font-size="31" style="fill:#A1A1AA">ad</text>
+<text transform="translate(1574,373) rotate(-90)" font-size="31" style="fill:#A1A1AA">aman</text>
+<text transform="translate(435,696) rotate(-90)" font-size="31" style="fill:#A1A1AA">aksi</text>
+<text transform="translate(1510,206)" font-size="31" style="fill:#A1A1AA">bela</text>
+<text transform="translate(1308,286) rotate(-90)" font-size="31" style="fill:#A1A1AA">sidik</text>
+<text transform="translate(1482,715) rotate(-90)" font-size="31" style="fill:#A1A1AA">hoc</text>
+<text transform="translate(501,321)" font-size="31" style="fill:#A1A1AA">mandat</text>
+<text transform="translate(1202,416)" font-size="31" style="fill:#A1A1AA">tulis</text>
+<text transform="translate(424,849)" font-size="31" style="fill:#A1A1AA">polisi</text>
+<text transform="translate(242,602) rotate(-90)" font-size="31" style="fill:#A1A1AA">beri</text>
+<text transform="translate(14,68)" font-size="31" style="fill:#A1A1AA">jamin</text>
+<text transform="translate(873,455)" font-size="30" style="fill:#A1A1AA">demokrasi</text>
+<text transform="translate(1384,318)" font-size="30" style="fill:#A1A1AA">bijak</text>
+<text transform="translate(493,465) rotate(-90)" font-size="30" style="fill:#A1A1AA">munir</text>
+<text transform="translate(271,810)" font-size="30" style="fill:#A1A1AA">kuat</text>
+<text transform="translate(842,620) rotate(-90)" font-size="30" style="fill:#A1A1AA">ayat</text>
+<text transform="translate(1583,507) rotate(-90)" font-size="30" style="fill:#A1A1AA">tindak</text>
+<text transform="translate(581,820)" font-size="30" style="fill:#A1A1AA">libat</text>
+<text transform="translate(1001,489)" font-size="30" style="fill:#A1A1AA">rupa</text>
+<text transform="translate(1247,501)" font-size="29" style="fill:#A1A1AA">tangkap</text>
+<text transform="translate(293,644) rotate(-90)" font-size="29" style="fill:#A1A1AA">ruang</text>
+<text transform="translate(1440,497) rotate(-90)" font-size="29" style="fill:#A1A1AA">tahan</text>
+<text transform="translate(342,759) rotate(-90)" font-size="29" style="fill:#A1A1AA">usut</text>
+<text transform="translate(88,820)" font-size="28" style="fill:#A1A1AA">pahlawan</text>
+<text transform="translate(1103,775)" font-size="28" style="fill:#A1A1AA">bukti</text>
+<text transform="translate(1332,38)" font-size="28" style="fill:#A1A1AA">kontras</text>
+<text transform="translate(854,275)" font-size="28" style="fill:#A1A1AA">asasi</text>
+<text transform="translate(1493,742)" font-size="28" style="fill:#A1A1AA">kerja</text>
+<text transform="translate(524,279)" font-size="28" style="fill:#A1A1AA">terima</text>
+<text transform="translate(475,809)" font-size="28" style="fill:#A1A1AA">catat</text>
+<text transform="translate(28,118)" font-size="28" style="fill:#A1A1AA">hidup</text>
+<text transform="translate(768,176)" font-size="22" style="fill:#A1A1AA">kriminalisasi</text>
+<text transform="translate(1117,140) rotate(-90)" font-size="22" style="fill:#A1A1AA">gelar</text>
+<text transform="translate(662,440)" font-size="22" style="fill:#A1A1AA">tuntut</text>
+</svg>

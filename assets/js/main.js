@@ -15,7 +15,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json');
+                const res = await fetch('data/archive.json?version=1');
                 this.items = await res.json();
             } catch (err) {
                 console.error('Failed to load archive data:', err);
@@ -99,7 +99,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json');
+                const res = await fetch('data/archive.json?version=1');
                 this.items = await res.json();
                 
                 const params = new URLSearchParams(window.location.search);
@@ -266,7 +266,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/timeline.json');
+                const res = await fetch('data/timeline.json?version=1');
                 this.milestones = await res.json();
             } catch (err) {
                 console.error('Failed to load timeline data:', err);
@@ -286,7 +286,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/reference.json');
+                const res = await fetch('data/reference.json?version=1');
                 const data = await res.json();
                 this.books = data.books || [];
                 this.videos = data.videos || [];
@@ -362,7 +362,7 @@ document.addEventListener('alpine:init', () => {
         async init() {
             this.initCounter();
             try {
-                const res = await fetch('data/mars.json');
+                const res = await fetch('data/mars.json?version=1');
                 this.lyrics = await res.json();
                 setTimeout(() => {
                     this.startSinging();
@@ -474,7 +474,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/statistics.json');
+                const res = await fetch('data/statistics.json?version=1');
                 this.data = await res.json();
                 
                 // Compute dynamic duration from startDate to current year
@@ -508,7 +508,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/faq.json');
+                const res = await fetch('data/faq.json?version=1');
                 this.faqs = await res.json();
             } catch (err) {
                 console.error('Failed to load FAQ data:', err);

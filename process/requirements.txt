@@ -1,0 +1,4 @@
+wordcloud
+Sastrawi
+beautifulsoup4
+matplotlib
