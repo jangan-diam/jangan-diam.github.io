@@ -107,6 +107,7 @@ Jika memilih opsi ini, lakukan langkah-langkah pemrosesan dari input user:
 ---
 
 ### Langkah 3: Analisis Berkas Bukti (Proof)
+- **Gunakan Kemampuan Vision LLM**: Untuk membaca, mentranskripsikan, dan menganalisis seluruh gambar (`selebaran.jpg`, `foto.jpg`, `refleksi.jpg`), AI Agent **wajib** menggunakan kemampuan multimodal/vision LLM secara langsung pada berkas gambar yang tersedia. Jangan berspekulasi atau menebak-nebak isinya tanpa membaca langsung isi gambarnya.
 - Analisis gambar `selebaran.jpg` (dan berkas selebaran tambahan `selebaran_n.jpg` jika ada) dan ekstrak informasi berikut:
   - **Tanggal Aksi**: Format ISO `YYYY-MM-DD` (contoh: `23 Juli 2026` → `2026-07-23`).
   - **Nomor Dokumen**: Ambil dari baris `Nomor: ...` (contoh: `81/Selebaran_Aksi Kamisan/VII/2026` atau `476/Surat Terbuka_JSKK/X/2024`).
@@ -265,6 +266,8 @@ Jika memilih opsi ini, lakukan langkah-langkah pemrosesan dari input user:
   - **Lakukan di Akhir Seluruh Proses**: Jika memproses beberapa folder/aksi sekaligus (multiple folders), **lakukan pembaruan `data/statistics.json` hanya satu kali pada langkah paling akhir** setelah seluruh folder selesai diproses dan digabungkan ke `data/archive.json`.
   - Perbarui bidang `totalArchives` jika terdapat penambahan/perubahan total naskah arsip (contoh: `"800+ Naskah"`).
   - Perbarui pula nilai `value` pada elemen bertuliskan `"label": "JUMLAH ARSIP"` di dalam daftar `stats` agar selaras dengan `totalArchives`.
+- **Abaikan Pembuatan Word Cloud**:
+  - **JANGAN** menjalankan skrip word cloud (`python process/cloud.py`) atau memodifikasi file `process/wordcloud.svg`. Skrip word cloud hanya dijalankan secara manual oleh admin, sehingga langkah ini harus dilewati sepenuhnya.
 - Pastikan semua berkas JSON (`archive.json`, `tags.json`, `cases.json`, `statistics.json`) tetap memiliki sintaks valid.
 
 ### Langkah 7: Pembersihan Berkas Duplikat & Simpan Direktori Proses
