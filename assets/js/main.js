@@ -9,13 +9,14 @@ document.addEventListener('alpine:init', () => {
         items: [],
         search: '',
         sort: 'newest',
+        yearFilter: '',
         loading: true,
         currentPage: 1,
         itemsPerPage: 6,
 
         async init() {
             try {
-                const res = await fetch('data/archive.json?version=67');
+                const res = await fetch('data/archive.json?version=68');
                 this.items = await res.json();
             } catch (err) {
                 console.error('Failed to load archive data:', err);
@@ -30,15 +31,25 @@ document.addEventListener('alpine:init', () => {
             this.$watch('sort', () => {
                 this.currentPage = 1;
             });
+            this.$watch('yearFilter', () => {
+                this.currentPage = 1;
+            });
+        },
+
+        get years() {
+            const years = new Set(this.items.map(item => (item.date || '').slice(0, 4)).filter(Boolean));
+            return Array.from(years).sort((a, b) => b - a);
         },
 
         get filteredItems() {
             const query = this.search.toLowerCase().trim();
             let result = this.items.filter(item =>
-                item.title.toLowerCase().includes(query) ||
+                (item.title.toLowerCase().includes(query) ||
                 item.summary.toLowerCase().includes(query) ||
                 item.actNum.includes(query) ||
-                item.tags.some(t => t.toLowerCase().includes(query))
+                item.tags.some(t => t.toLowerCase().includes(query)) ||
+                (item.casesReferred || []).some(c => c.toLowerCase().includes(query))) &&
+                (!this.yearFilter || (item.date || '').slice(0, 4) === this.yearFilter)
             );
 
             if (this.sort === 'oldest') {
@@ -47,6 +58,19 @@ document.addEventListener('alpine:init', () => {
                 result.sort((a, b) => parseInt(b.actNum) - parseInt(a.actNum));
             }
             return result;
+        },
+
+        get topTags() {
+            const counts = {};
+            this.filteredItems.forEach(item => {
+                item.tags.forEach(t => {
+                    counts[t] = (counts[t] || 0) + 1;
+                });
+            });
+            return Object.entries(counts)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5)
+                .map(([tag, count]) => ({ tag, count }));
         },
 
         get paginatedItems() {
@@ -99,7 +123,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json?version=67');
+                const res = await fetch('data/archive.json?version=68');
                 this.items = await res.json();
                 
                 const params = new URLSearchParams(window.location.search);
@@ -474,7 +498,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/statistics.json?version=67');
+                const res = await fetch('data/statistics.json?version=68');
                 this.data = await res.json();
                 
                 // Compute dynamic duration from startDate to current year
