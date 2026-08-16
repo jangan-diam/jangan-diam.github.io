@@ -16,8 +16,9 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json?version=68');
-                this.items = await res.json();
+                const res = await fetch('data/archive.json?version=72');
+                const raw = await res.json();
+                this.items = raw.sort((a, b) => (parseInt(b.actNum, 10) || 0) - (parseInt(a.actNum, 10) || 0));
             } catch (err) {
                 console.error('Failed to load archive data:', err);
             } finally {
@@ -123,11 +124,12 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json?version=68');
-                this.items = await res.json();
+                const res = await fetch('data/archive.json?version=72');
+                const rawItems = await res.json();
+                this.items = rawItems.sort((a, b) => (parseInt(b.actNum, 10) || 0) - (parseInt(a.actNum, 10) || 0));
                 
                 const params = new URLSearchParams(window.location.search);
-                const id = params.get('id') || (this.items[0] ? this.items[0].actNum : '917');
+                const id = params.get('id') || (this.items[0] ? this.items[0].actNum : '920');
                 const index = this.items.findIndex(i => i.actNum === id);
                 
                 if (index !== -1) {
@@ -498,7 +500,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/statistics.json?version=68');
+                const res = await fetch('data/statistics.json?version=71');
                 this.data = await res.json();
                 
                 // Compute dynamic duration from startDate to current year
