@@ -16,7 +16,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json?version=72');
+                const res = await fetch('data/archive.json?version=74');
                 const raw = await res.json();
                 this.items = raw.sort((a, b) => (parseInt(b.actNum, 10) || 0) - (parseInt(a.actNum, 10) || 0));
             } catch (err) {
@@ -124,7 +124,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/archive.json?version=72');
+                const res = await fetch('data/archive.json?version=74');
                 const rawItems = await res.json();
                 this.items = rawItems.sort((a, b) => (parseInt(b.actNum, 10) || 0) - (parseInt(a.actNum, 10) || 0));
                 
@@ -500,7 +500,7 @@ document.addEventListener('alpine:init', () => {
 
         async init() {
             try {
-                const res = await fetch('data/statistics.json?version=71');
+                const res = await fetch('data/statistics.json?version=73');
                 this.data = await res.json();
                 
                 // Compute dynamic duration from startDate to current year
